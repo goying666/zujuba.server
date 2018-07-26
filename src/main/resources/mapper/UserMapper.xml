@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.renchaigao.zujuba.dao.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.dao.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="addres" property="addres" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="marriage" property="marriage" jdbcType="VARCHAR" />
+    <result column="whiteuserid" property="whiteuserid" jdbcType="INTEGER" />
+    <result column="blackuserid" property="blackuserid" jdbcType="INTEGER" />
+    <result column="userloginid" property="userloginid" jdbcType="INTEGER" />
+    <result column="roomid" property="roomid" jdbcType="INTEGER" />
+    <result column="gameid" property="gameid" jdbcType="INTEGER" />
+    <result column="storeid" property="storeid" jdbcType="INTEGER" />
+    <result column="integration" property="integration" jdbcType="INTEGER" />
+    <result column="otherinfoid" property="otherinfoid" jdbcType="INTEGER" />
+    <result column="photosn" property="photosn" jdbcType="VARCHAR" />
+    <result column="userpwd" property="userpwd" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, nickname, age, realname, idcard, addres, gender, job, telephone, marriage, whiteuserid, 
+    blackuserid, userloginid, roomid, gameid, storeid, integration, otherinfoid, photosn, 
+    userpwd, token
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByTelephone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where telephone = #{telephone,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.User" >
+    insert into user (id, nickname, age, 
+      realname, idcard, addres, 
+      gender, job, telephone, 
+      marriage, whiteuserid, blackuserid, 
+      userloginid, roomid, gameid, 
+      storeid, integration, otherinfoid, 
+      photosn, userpwd, token
+      )
+    values (#{id,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{realname,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{addres,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{marriage,jdbcType=VARCHAR}, #{whiteuserid,jdbcType=INTEGER}, #{blackuserid,jdbcType=INTEGER}, 
+      #{userloginid,jdbcType=INTEGER}, #{roomid,jdbcType=INTEGER}, #{gameid,jdbcType=INTEGER}, 
+      #{storeid,jdbcType=INTEGER}, #{integration,jdbcType=INTEGER}, #{otherinfoid,jdbcType=INTEGER}, 
+      #{photosn,jdbcType=VARCHAR}, #{userpwd,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="addres != null" >
+        addres,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="marriage != null" >
+        marriage,
+      </if>
+      <if test="whiteuserid != null" >
+        whiteuserid,
+      </if>
+      <if test="blackuserid != null" >
+        blackuserid,
+      </if>
+      <if test="userloginid != null" >
+        userloginid,
+      </if>
+      <if test="roomid != null" >
+        roomid,
+      </if>
+      <if test="gameid != null" >
+        gameid,
+      </if>
+      <if test="storeid != null" >
+        storeid,
+      </if>
+      <if test="integration != null" >
+        integration,
+      </if>
+      <if test="otherinfoid != null" >
+        otherinfoid,
+      </if>
+      <if test="photosn != null" >
+        photosn,
+      </if>
+      <if test="userpwd != null" >
+        userpwd,
+      </if>
+      <if test="token != null" >
+        token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="addres != null" >
+        #{addres,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="whiteuserid != null" >
+        #{whiteuserid,jdbcType=INTEGER},
+      </if>
+      <if test="blackuserid != null" >
+        #{blackuserid,jdbcType=INTEGER},
+      </if>
+      <if test="userloginid != null" >
+        #{userloginid,jdbcType=INTEGER},
+      </if>
+      <if test="roomid != null" >
+        #{roomid,jdbcType=INTEGER},
+      </if>
+      <if test="gameid != null" >
+        #{gameid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="integration != null" >
+        #{integration,jdbcType=INTEGER},
+      </if>
+      <if test="otherinfoid != null" >
+        #{otherinfoid,jdbcType=INTEGER},
+      </if>
+      <if test="photosn != null" >
+        #{photosn,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null" >
+        #{userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.dao.User" >
+    update user
+    <set >
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="addres != null" >
+        addres = #{addres,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="whiteuserid != null" >
+        whiteuserid = #{whiteuserid,jdbcType=INTEGER},
+      </if>
+      <if test="blackuserid != null" >
+        blackuserid = #{blackuserid,jdbcType=INTEGER},
+      </if>
+      <if test="userloginid != null" >
+        userloginid = #{userloginid,jdbcType=INTEGER},
+      </if>
+      <if test="roomid != null" >
+        roomid = #{roomid,jdbcType=INTEGER},
+      </if>
+      <if test="gameid != null" >
+        gameid = #{gameid,jdbcType=INTEGER},
+      </if>
+      <if test="storeid != null" >
+        storeid = #{storeid,jdbcType=INTEGER},
+      </if>
+      <if test="integration != null" >
+        integration = #{integration,jdbcType=INTEGER},
+      </if>
+      <if test="otherinfoid != null" >
+        otherinfoid = #{otherinfoid,jdbcType=INTEGER},
+      </if>
+      <if test="photosn != null" >
+        photosn = #{photosn,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null" >
+        userpwd = #{userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.dao.User" >
+    update user
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      realname = #{realname,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      addres = #{addres,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=VARCHAR},
+      whiteuserid = #{whiteuserid,jdbcType=INTEGER},
+      blackuserid = #{blackuserid,jdbcType=INTEGER},
+      userloginid = #{userloginid,jdbcType=INTEGER},
+      roomid = #{roomid,jdbcType=INTEGER},
+      gameid = #{gameid,jdbcType=INTEGER},
+      storeid = #{storeid,jdbcType=INTEGER},
+      integration = #{integration,jdbcType=INTEGER},
+      otherinfoid = #{otherinfoid,jdbcType=INTEGER},
+      photosn = #{photosn,jdbcType=VARCHAR},
+      userpwd = #{userpwd,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

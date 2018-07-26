@@ -1,0 +1,8 @@
+2018-07-24 10:40:43  [ http-nio-7899-exec-9:0 ] - [ INFO ]  {dataSource-1} inited
+2018-07-24 10:40:43  [ http-nio-7899-exec-9:91 ] - [ DEBUG ]  {conn-10001, pstmt-20000} enter cache
+2018-07-24 16:55:44  [ http-nio-7899-exec-2:0 ] - [ INFO ]  {dataSource-1} inited
+2018-07-24 16:55:44  [ http-nio-7899-exec-2:96 ] - [ DEBUG ]  {conn-10001, pstmt-20000} enter cache
+2018-07-24 17:56:20  [ http-nio-7899-exec-2:0 ] - [ INFO ]  {dataSource-1} inited
+2018-07-24 17:56:20  [ http-nio-7899-exec-2:108 ] - [ DEBUG ]  {conn-10001, pstmt-20000} enter cache
+2018-07-24 22:59:51  [ http-nio-7899-exec-1:0 ] - [ INFO ]  {dataSource-1} inited
+2018-07-24 22:59:51  [ http-nio-7899-exec-1:94 ] - [ DEBUG ]  {conn-10001, pstmt-20000} enter cache
