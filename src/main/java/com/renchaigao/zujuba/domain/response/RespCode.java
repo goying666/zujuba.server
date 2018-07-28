@@ -6,12 +6,17 @@ import lombok.ToString;
 @Getter
 @ToString
 public enum  RespCode {
-    EXCEPTION(1, "抛出异常"),
-    SUCCESS(0, "请求成功"),
-    WARN(-1, "网络异常，请稍后重试"),
-    USERHAD(1001,"用户已存在"),
-    WRONGPWD(-1001,"用户密码错误"),
-    USERNOTEL(-1002,"用户没有电话信息");
+    EXCEPTION(1, "Throw an exception"),
+    SUCCESS(0, "Request success"),
+    UPDATEUSERINFOSUCCESS(1002, "Update userinfo success"),
+    WARN(-1, "Network exception, please try again later"),
+    USERHAD(1001,"User already exists"),
+    WRONGPWD(-1001,"Wrong password"),
+    USERNOTEL(-1002,"Telephone missing"),
+    TOKENOLD(-1003,"Token is Expired"),
+    TOKENWRONG(-1004,"Token is wrong"),
+    STOREWRONG(-1100,"Storeinfo is wrong"),
+    STOREFILEWRONG(-1101,"StoreFile is wrong");
 
 
 

@@ -5,10 +5,7 @@ import com.renchaigao.zujuba.domain.response.ResponseEntity;
 import com.renchaigao.zujuba.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -22,10 +19,10 @@ public class UserController {
 //    public ResponseEntity userWxLogin(@RequestBody UserLoin userLoin){
 //        return  userServiceImpl.addUserLogin(userLoin);
 //    }
-    @PostMapping(value = "/add" , consumes = "application/json")
+    @PostMapping(value = "/add/{mode}" , consumes = "application/json")
     @ResponseBody
-    public ResponseEntity userAddInfo(@RequestBody User user){
-        return userServiceImpl.addUser(user);
+    public ResponseEntity userAddInfo(@RequestBody User user,@PathVariable("mode") String inputMode){
+        return userServiceImpl.addUser(user,inputMode);
     }
 
 

@@ -5,6 +5,6 @@ import com.renchaigao.zujuba.domain.response.ResponseEntity;
 
 public interface UserService {
 
-    ResponseEntity addUser(User user);
+    ResponseEntity addUser(User user,String inputMode);
 //    ResponseEntity addUserLogin(UserLoin userLoin);
 }
