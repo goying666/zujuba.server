@@ -2,7 +2,7 @@ package com.renchaigao.zujuba.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.renchaigao.zujuba.dao.Store;
-import com.renchaigao.zujuba.dao.StoreInfo;
+import com.renchaigao.zujuba.domain.StoreInfo;
 import com.renchaigao.zujuba.dao.User;
 import com.renchaigao.zujuba.dao.mapper.StoreMapper;
 import com.renchaigao.zujuba.dao.mapper.UserMapper;

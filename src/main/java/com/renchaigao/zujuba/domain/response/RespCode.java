@@ -16,9 +16,9 @@ public enum  RespCode {
     TOKENOLD(-1003,"Token is Expired"),
     TOKENWRONG(-1004,"Token is wrong"),
     STOREWRONG(-1100,"Storeinfo is wrong"),
-    STOREFILEWRONG(-1101,"StoreFile is wrong");
+    STOREFILEWRONG(-1101,"StoreFile is wrong"),
 
-
+    TEAMHAD(-1201,"Same team had exists");
 
     private int code;
     private String msg;
