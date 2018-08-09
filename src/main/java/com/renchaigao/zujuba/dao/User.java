@@ -43,27 +43,23 @@ public class User {
 
     private String myStoresId;
 
-    private String photoId;
+    private String photoInfoId;
 
-    private String addressId;
+    private String myAddressId;
 
-    private String spendId;
+    private String myRankInfoId;
 
-    private String messageId;
+    private String mySpendInfoId;
 
-    private String friendId;
+    private String myMessageInfoId;
 
-    private String userloginId;
+    private String myFriendInfoId;
 
-    private String integrationId;
+    private String myIntegrationInfoId;
 
-    private String rankId;
+    private String peopleListId;
 
-    private String whiteuserId;
-
-    private String blackuserId;
-
-    private String permissionId;
+    private String myPermissionInfoId;
 
     public String getId() {
         return id;
@@ -233,91 +229,75 @@ public class User {
         this.myStoresId = myStoresId == null ? null : myStoresId.trim();
     }
 
-    public String getPhotoId() {
-        return photoId;
+    public String getPhotoInfoId() {
+        return photoInfoId;
     }
 
-    public void setPhotoId(String photoId) {
-        this.photoId = photoId == null ? null : photoId.trim();
+    public void setPhotoInfoId(String photoInfoId) {
+        this.photoInfoId = photoInfoId == null ? null : photoInfoId.trim();
     }
 
-    public String getAddressId() {
-        return addressId;
+    public String getMyAddressId() {
+        return myAddressId;
     }
 
-    public void setAddressId(String addressId) {
-        this.addressId = addressId == null ? null : addressId.trim();
+    public void setMyAddressId(String myAddressId) {
+        this.myAddressId = myAddressId == null ? null : myAddressId.trim();
     }
 
-    public String getSpendId() {
-        return spendId;
+    public String getMyRankInfoId() {
+        return myRankInfoId;
     }
 
-    public void setSpendId(String spendId) {
-        this.spendId = spendId == null ? null : spendId.trim();
+    public void setMyRankInfoId(String myRankInfoId) {
+        this.myRankInfoId = myRankInfoId == null ? null : myRankInfoId.trim();
     }
 
-    public String getMessageId() {
-        return messageId;
+    public String getMySpendInfoId() {
+        return mySpendInfoId;
     }
 
-    public void setMessageId(String messageId) {
-        this.messageId = messageId == null ? null : messageId.trim();
+    public void setMySpendInfoId(String mySpendInfoId) {
+        this.mySpendInfoId = mySpendInfoId == null ? null : mySpendInfoId.trim();
     }
 
-    public String getFriendId() {
-        return friendId;
+    public String getMyMessageInfoId() {
+        return myMessageInfoId;
     }
 
-    public void setFriendId(String friendId) {
-        this.friendId = friendId == null ? null : friendId.trim();
+    public void setMyMessageInfoId(String myMessageInfoId) {
+        this.myMessageInfoId = myMessageInfoId == null ? null : myMessageInfoId.trim();
     }
 
-    public String getUserloginId() {
-        return userloginId;
+    public String getMyFriendInfoId() {
+        return myFriendInfoId;
     }
 
-    public void setUserloginId(String userloginId) {
-        this.userloginId = userloginId == null ? null : userloginId.trim();
+    public void setMyFriendInfoId(String myFriendInfoId) {
+        this.myFriendInfoId = myFriendInfoId == null ? null : myFriendInfoId.trim();
     }
 
-    public String getIntegrationId() {
-        return integrationId;
+    public String getMyIntegrationInfoId() {
+        return myIntegrationInfoId;
     }
 
-    public void setIntegrationId(String integrationId) {
-        this.integrationId = integrationId == null ? null : integrationId.trim();
+    public void setMyIntegrationInfoId(String myIntegrationInfoId) {
+        this.myIntegrationInfoId = myIntegrationInfoId == null ? null : myIntegrationInfoId.trim();
     }
 
-    public String getRankId() {
-        return rankId;
+    public String getPeopleListId() {
+        return peopleListId;
     }
 
-    public void setRankId(String rankId) {
-        this.rankId = rankId == null ? null : rankId.trim();
+    public void setPeopleListId(String peopleListId) {
+        this.peopleListId = peopleListId == null ? null : peopleListId.trim();
     }
 
-    public String getWhiteuserId() {
-        return whiteuserId;
+    public String getMyPermissionInfoId() {
+        return myPermissionInfoId;
     }
 
-    public void setWhiteuserId(String whiteuserId) {
-        this.whiteuserId = whiteuserId == null ? null : whiteuserId.trim();
-    }
-
-    public String getBlackuserId() {
-        return blackuserId;
-    }
-
-    public void setBlackuserId(String blackuserId) {
-        this.blackuserId = blackuserId == null ? null : blackuserId.trim();
-    }
-
-    public String getPermissionId() {
-        return permissionId;
-    }
-
-    public void setPermissionId(String permissionId) {
-        this.permissionId = permissionId == null ? null : permissionId.trim();
+    public void setMyPermissionInfoId(String myPermissionInfoId) {
+        this.myPermissionInfoId = myPermissionInfoId == null ? null : myPermissionInfoId.trim();
     }
 }

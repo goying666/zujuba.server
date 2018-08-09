@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.renchaigao.zujuba.dao.mapper.FriendMapper" >
+  <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.dao.Friend" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userId" property="userId" jdbcType="VARCHAR" />
+    <result column="friendId" property="friendId" jdbcType="VARCHAR" />
+    <result column="friendOpenInfoId" property="friendOpenInfoId" jdbcType="VARCHAR" />
+    <result column="messageNum" property="messageNum" jdbcType="INTEGER" />
+    <result column="teamTimes" property="teamTimes" jdbcType="INTEGER" />
+    <result column="gameTimes" property="gameTimes" jdbcType="INTEGER" />
+    <result column="deleteStyle" property="deleteStyle" jdbcType="BIT" />
+    <result column="upTime" property="upTime" jdbcType="VARCHAR" />
+    <result column="addTime" property="addTime" jdbcType="VARCHAR" />
+    <result column="firstTeamId" property="firstTeamId" jdbcType="VARCHAR" />
+    <result column="nearlyTeamId" property="nearlyTeamId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, friendId, friendOpenInfoId, messageNum, teamTimes, gameTimes, deleteStyle, 
+    upTime, addTime, firstTeamId, nearlyTeamId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from friend
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from friend
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.Friend" >
+    insert into friend (id, userId, friendId, 
+      friendOpenInfoId, messageNum, teamTimes, 
+      gameTimes, deleteStyle, upTime, 
+      addTime, firstTeamId, nearlyTeamId
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{friendId,jdbcType=VARCHAR}, 
+      #{friendOpenInfoId,jdbcType=VARCHAR}, #{messageNum,jdbcType=INTEGER}, #{teamTimes,jdbcType=INTEGER}, 
+      #{gameTimes,jdbcType=INTEGER}, #{deleteStyle,jdbcType=BIT}, #{upTime,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=VARCHAR}, #{firstTeamId,jdbcType=VARCHAR}, #{nearlyTeamId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.Friend" >
+    insert into friend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="friendId != null" >
+        friendId,
+      </if>
+      <if test="friendOpenInfoId != null" >
+        friendOpenInfoId,
+      </if>
+      <if test="messageNum != null" >
+        messageNum,
+      </if>
+      <if test="teamTimes != null" >
+        teamTimes,
+      </if>
+      <if test="gameTimes != null" >
+        gameTimes,
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle,
+      </if>
+      <if test="upTime != null" >
+        upTime,
+      </if>
+      <if test="addTime != null" >
+        addTime,
+      </if>
+      <if test="firstTeamId != null" >
+        firstTeamId,
+      </if>
+      <if test="nearlyTeamId != null" >
+        nearlyTeamId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendId != null" >
+        #{friendId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendOpenInfoId != null" >
+        #{friendOpenInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="messageNum != null" >
+        #{messageNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamTimes != null" >
+        #{teamTimes,jdbcType=INTEGER},
+      </if>
+      <if test="gameTimes != null" >
+        #{gameTimes,jdbcType=INTEGER},
+      </if>
+      <if test="deleteStyle != null" >
+        #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTeamId != null" >
+        #{firstTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="nearlyTeamId != null" >
+        #{nearlyTeamId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.dao.Friend" >
+    update friend
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendId != null" >
+        friendId = #{friendId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendOpenInfoId != null" >
+        friendOpenInfoId = #{friendOpenInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="messageNum != null" >
+        messageNum = #{messageNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamTimes != null" >
+        teamTimes = #{teamTimes,jdbcType=INTEGER},
+      </if>
+      <if test="gameTimes != null" >
+        gameTimes = #{gameTimes,jdbcType=INTEGER},
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle = #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        upTime = #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        addTime = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTeamId != null" >
+        firstTeamId = #{firstTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="nearlyTeamId != null" >
+        nearlyTeamId = #{nearlyTeamId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.dao.Friend" >
+    update friend
+    set userId = #{userId,jdbcType=VARCHAR},
+      friendId = #{friendId,jdbcType=VARCHAR},
+      friendOpenInfoId = #{friendOpenInfoId,jdbcType=VARCHAR},
+      messageNum = #{messageNum,jdbcType=INTEGER},
+      teamTimes = #{teamTimes,jdbcType=INTEGER},
+      gameTimes = #{gameTimes,jdbcType=INTEGER},
+      deleteStyle = #{deleteStyle,jdbcType=BIT},
+      upTime = #{upTime,jdbcType=VARCHAR},
+      addTime = #{addTime,jdbcType=VARCHAR},
+      firstTeamId = #{firstTeamId,jdbcType=VARCHAR},
+      nearlyTeamId = #{nearlyTeamId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

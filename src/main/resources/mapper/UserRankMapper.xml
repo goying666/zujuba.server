@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.renchaigao.zujuba.dao.mapper.UserRankMapper" >
+  <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.dao.UserRank" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="userId" property="userId" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="cityIntegralRank" property="cityIntegralRank" jdbcType="INTEGER" />
+    <result column="provinceIntegralRank" property="provinceIntegralRank" jdbcType="INTEGER" />
+    <result column="countryIntegralRank" property="countryIntegralRank" jdbcType="INTEGER" />
+    <result column="deleteStyle" property="deleteStyle" jdbcType="BIT" />
+    <result column="upTime" property="upTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, userId, integral, cityIntegralRank, provinceIntegralRank, countryIntegralRank, 
+    deleteStyle, upTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from userRank
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from userRank
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.UserRank" >
+    insert into userRank (Id, userId, integral, 
+      cityIntegralRank, provinceIntegralRank, 
+      countryIntegralRank, deleteStyle, upTime
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, 
+      #{cityIntegralRank,jdbcType=INTEGER}, #{provinceIntegralRank,jdbcType=INTEGER}, 
+      #{countryIntegralRank,jdbcType=INTEGER}, #{deleteStyle,jdbcType=BIT}, #{upTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.UserRank" >
+    insert into userRank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="cityIntegralRank != null" >
+        cityIntegralRank,
+      </if>
+      <if test="provinceIntegralRank != null" >
+        provinceIntegralRank,
+      </if>
+      <if test="countryIntegralRank != null" >
+        countryIntegralRank,
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle,
+      </if>
+      <if test="upTime != null" >
+        upTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="cityIntegralRank != null" >
+        #{cityIntegralRank,jdbcType=INTEGER},
+      </if>
+      <if test="provinceIntegralRank != null" >
+        #{provinceIntegralRank,jdbcType=INTEGER},
+      </if>
+      <if test="countryIntegralRank != null" >
+        #{countryIntegralRank,jdbcType=INTEGER},
+      </if>
+      <if test="deleteStyle != null" >
+        #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.dao.UserRank" >
+    update userRank
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="cityIntegralRank != null" >
+        cityIntegralRank = #{cityIntegralRank,jdbcType=INTEGER},
+      </if>
+      <if test="provinceIntegralRank != null" >
+        provinceIntegralRank = #{provinceIntegralRank,jdbcType=INTEGER},
+      </if>
+      <if test="countryIntegralRank != null" >
+        countryIntegralRank = #{countryIntegralRank,jdbcType=INTEGER},
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle = #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        upTime = #{upTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.dao.UserRank" >
+    update userRank
+    set userId = #{userId,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      cityIntegralRank = #{cityIntegralRank,jdbcType=INTEGER},
+      provinceIntegralRank = #{provinceIntegralRank,jdbcType=INTEGER},
+      countryIntegralRank = #{countryIntegralRank,jdbcType=INTEGER},
+      deleteStyle = #{deleteStyle,jdbcType=BIT},
+      upTime = #{upTime,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

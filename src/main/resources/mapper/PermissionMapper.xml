@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.renchaigao.zujuba.dao.mapper.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.dao.Permission" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="permissionClass" property="permissionClass" jdbcType="VARCHAR" />
+    <result column="ownerId" property="ownerId" jdbcType="VARCHAR" />
+    <result column="who" property="who" jdbcType="VARCHAR" />
+    <result column="permissionConten" property="permissionConten" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="VARCHAR" />
+    <result column="deleteStyle" property="deleteStyle" jdbcType="BIT" />
+    <result column="upTime" property="upTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, permissionClass, ownerId, who, permissionConten, createTime, deleteStyle, upTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from permission
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.Permission" >
+    insert into permission (Id, permissionClass, ownerId, 
+      who, permissionConten, createTime, 
+      deleteStyle, upTime)
+    values (#{id,jdbcType=VARCHAR}, #{permissionClass,jdbcType=VARCHAR}, #{ownerId,jdbcType=VARCHAR}, 
+      #{who,jdbcType=VARCHAR}, #{permissionConten,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{deleteStyle,jdbcType=BIT}, #{upTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.Permission" >
+    insert into permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="permissionClass != null" >
+        permissionClass,
+      </if>
+      <if test="ownerId != null" >
+        ownerId,
+      </if>
+      <if test="who != null" >
+        who,
+      </if>
+      <if test="permissionConten != null" >
+        permissionConten,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle,
+      </if>
+      <if test="upTime != null" >
+        upTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionClass != null" >
+        #{permissionClass,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="who != null" >
+        #{who,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionConten != null" >
+        #{permissionConten,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStyle != null" >
+        #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.dao.Permission" >
+    update permission
+    <set >
+      <if test="permissionClass != null" >
+        permissionClass = #{permissionClass,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        ownerId = #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="who != null" >
+        who = #{who,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionConten != null" >
+        permissionConten = #{permissionConten,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle = #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        upTime = #{upTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.dao.Permission" >
+    update permission
+    set permissionClass = #{permissionClass,jdbcType=VARCHAR},
+      ownerId = #{ownerId,jdbcType=VARCHAR},
+      who = #{who,jdbcType=VARCHAR},
+      permissionConten = #{permissionConten,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=VARCHAR},
+      deleteStyle = #{deleteStyle,jdbcType=BIT},
+      upTime = #{upTime,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

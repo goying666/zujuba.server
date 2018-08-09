@@ -23,23 +23,21 @@
     <result column="myTeamsId" property="myTeamsId" jdbcType="VARCHAR" />
     <result column="myGamesId" property="myGamesId" jdbcType="VARCHAR" />
     <result column="myStoresId" property="myStoresId" jdbcType="VARCHAR" />
-    <result column="photoId" property="photoId" jdbcType="VARCHAR" />
-    <result column="addressId" property="addressId" jdbcType="VARCHAR" />
-    <result column="spendId" property="spendId" jdbcType="VARCHAR" />
-    <result column="messageId" property="messageId" jdbcType="VARCHAR" />
-    <result column="friendId" property="friendId" jdbcType="VARCHAR" />
-    <result column="userloginId" property="userloginId" jdbcType="VARCHAR" />
-    <result column="integrationId" property="integrationId" jdbcType="VARCHAR" />
-    <result column="rankId" property="rankId" jdbcType="VARCHAR" />
-    <result column="whiteuserId" property="whiteuserId" jdbcType="VARCHAR" />
-    <result column="blackuserId" property="blackuserId" jdbcType="VARCHAR" />
-    <result column="PermissionId" property="permissionId" jdbcType="VARCHAR" />
+    <result column="photoInfoId" property="photoInfoId" jdbcType="VARCHAR" />
+    <result column="myAddressId" property="myAddressId" jdbcType="VARCHAR" />
+    <result column="myRankInfoId" property="myRankInfoId" jdbcType="VARCHAR" />
+    <result column="mySpendInfoId" property="mySpendInfoId" jdbcType="VARCHAR" />
+    <result column="myMessageInfoId" property="myMessageInfoId" jdbcType="VARCHAR" />
+    <result column="myFriendInfoId" property="myFriendInfoId" jdbcType="VARCHAR" />
+    <result column="myIntegrationInfoId" property="myIntegrationInfoId" jdbcType="VARCHAR" />
+    <result column="peopleListId" property="peopleListId" jdbcType="VARCHAR" />
+    <result column="myPermissionInfoId" property="myPermissionInfoId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     Id, age, ageLevel, realName, nickName, idCard, gender, job, telephone, marriage, 
     userPWD, token, picPath, deleteStyle, upTime, myOpenInfoId, userInfoId, uniqueId, 
-    myTeamsId, myGamesId, myStoresId, photoId, addressId, spendId, messageId, friendId, 
-    userloginId, integrationId, rankId, whiteuserId, blackuserId, PermissionId
+    myTeamsId, myGamesId, myStoresId, photoInfoId, myAddressId, myRankInfoId, mySpendInfoId, 
+    myMessageInfoId, myFriendInfoId, myIntegrationInfoId, peopleListId, myPermissionInfoId
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -59,10 +57,10 @@
       picPath, deleteStyle, upTime, 
       myOpenInfoId, userInfoId, uniqueId, 
       myTeamsId, myGamesId, myStoresId, 
-      photoId, addressId, spendId, 
-      messageId, friendId, userloginId, 
-      integrationId, rankId, whiteuserId, 
-      blackuserId, PermissionId)
+      photoInfoId, myAddressId, myRankInfoId, 
+      mySpendInfoId, myMessageInfoId, myFriendInfoId, 
+      myIntegrationInfoId, peopleListId, myPermissionInfoId
+      )
     values (#{id,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{ageLevel,jdbcType=VARCHAR}, 
       #{realName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
       #{gender,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
@@ -70,10 +68,10 @@
       #{picPath,jdbcType=VARCHAR}, #{deleteStyle,jdbcType=BIT}, #{upTime,jdbcType=VARCHAR}, 
       #{myOpenInfoId,jdbcType=VARCHAR}, #{userInfoId,jdbcType=VARCHAR}, #{uniqueId,jdbcType=VARCHAR}, 
       #{myTeamsId,jdbcType=VARCHAR}, #{myGamesId,jdbcType=VARCHAR}, #{myStoresId,jdbcType=VARCHAR}, 
-      #{photoId,jdbcType=VARCHAR}, #{addressId,jdbcType=VARCHAR}, #{spendId,jdbcType=VARCHAR}, 
-      #{messageId,jdbcType=VARCHAR}, #{friendId,jdbcType=VARCHAR}, #{userloginId,jdbcType=VARCHAR}, 
-      #{integrationId,jdbcType=VARCHAR}, #{rankId,jdbcType=VARCHAR}, #{whiteuserId,jdbcType=VARCHAR}, 
-      #{blackuserId,jdbcType=VARCHAR}, #{permissionId,jdbcType=VARCHAR})
+      #{photoInfoId,jdbcType=VARCHAR}, #{myAddressId,jdbcType=VARCHAR}, #{myRankInfoId,jdbcType=VARCHAR}, 
+      #{mySpendInfoId,jdbcType=VARCHAR}, #{myMessageInfoId,jdbcType=VARCHAR}, #{myFriendInfoId,jdbcType=VARCHAR}, 
+      #{myIntegrationInfoId,jdbcType=VARCHAR}, #{peopleListId,jdbcType=VARCHAR}, #{myPermissionInfoId,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.User" >
     insert into user
@@ -141,38 +139,32 @@
       <if test="myStoresId != null" >
         myStoresId,
       </if>
-      <if test="photoId != null" >
-        photoId,
+      <if test="photoInfoId != null" >
+        photoInfoId,
       </if>
-      <if test="addressId != null" >
-        addressId,
+      <if test="myAddressId != null" >
+        myAddressId,
       </if>
-      <if test="spendId != null" >
-        spendId,
+      <if test="myRankInfoId != null" >
+        myRankInfoId,
       </if>
-      <if test="messageId != null" >
-        messageId,
+      <if test="mySpendInfoId != null" >
+        mySpendInfoId,
       </if>
-      <if test="friendId != null" >
-        friendId,
+      <if test="myMessageInfoId != null" >
+        myMessageInfoId,
       </if>
-      <if test="userloginId != null" >
-        userloginId,
+      <if test="myFriendInfoId != null" >
+        myFriendInfoId,
       </if>
-      <if test="integrationId != null" >
-        integrationId,
+      <if test="myIntegrationInfoId != null" >
+        myIntegrationInfoId,
       </if>
-      <if test="rankId != null" >
-        rankId,
+      <if test="peopleListId != null" >
+        peopleListId,
       </if>
-      <if test="whiteuserId != null" >
-        whiteuserId,
-      </if>
-      <if test="blackuserId != null" >
-        blackuserId,
-      </if>
-      <if test="permissionId != null" >
-        PermissionId,
+      <if test="myPermissionInfoId != null" >
+        myPermissionInfoId,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -239,38 +231,32 @@
       <if test="myStoresId != null" >
         #{myStoresId,jdbcType=VARCHAR},
       </if>
-      <if test="photoId != null" >
-        #{photoId,jdbcType=VARCHAR},
+      <if test="photoInfoId != null" >
+        #{photoInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="addressId != null" >
-        #{addressId,jdbcType=VARCHAR},
+      <if test="myAddressId != null" >
+        #{myAddressId,jdbcType=VARCHAR},
       </if>
-      <if test="spendId != null" >
-        #{spendId,jdbcType=VARCHAR},
+      <if test="myRankInfoId != null" >
+        #{myRankInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="messageId != null" >
-        #{messageId,jdbcType=VARCHAR},
+      <if test="mySpendInfoId != null" >
+        #{mySpendInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="friendId != null" >
-        #{friendId,jdbcType=VARCHAR},
+      <if test="myMessageInfoId != null" >
+        #{myMessageInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="userloginId != null" >
-        #{userloginId,jdbcType=VARCHAR},
+      <if test="myFriendInfoId != null" >
+        #{myFriendInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="integrationId != null" >
-        #{integrationId,jdbcType=VARCHAR},
+      <if test="myIntegrationInfoId != null" >
+        #{myIntegrationInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="rankId != null" >
-        #{rankId,jdbcType=VARCHAR},
+      <if test="peopleListId != null" >
+        #{peopleListId,jdbcType=VARCHAR},
       </if>
-      <if test="whiteuserId != null" >
-        #{whiteuserId,jdbcType=VARCHAR},
-      </if>
-      <if test="blackuserId != null" >
-        #{blackuserId,jdbcType=VARCHAR},
-      </if>
-      <if test="permissionId != null" >
-        #{permissionId,jdbcType=VARCHAR},
+      <if test="myPermissionInfoId != null" >
+        #{myPermissionInfoId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -337,38 +323,32 @@
       <if test="myStoresId != null" >
         myStoresId = #{myStoresId,jdbcType=VARCHAR},
       </if>
-      <if test="photoId != null" >
-        photoId = #{photoId,jdbcType=VARCHAR},
+      <if test="photoInfoId != null" >
+        photoInfoId = #{photoInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="addressId != null" >
-        addressId = #{addressId,jdbcType=VARCHAR},
+      <if test="myAddressId != null" >
+        myAddressId = #{myAddressId,jdbcType=VARCHAR},
       </if>
-      <if test="spendId != null" >
-        spendId = #{spendId,jdbcType=VARCHAR},
+      <if test="myRankInfoId != null" >
+        myRankInfoId = #{myRankInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="messageId != null" >
-        messageId = #{messageId,jdbcType=VARCHAR},
+      <if test="mySpendInfoId != null" >
+        mySpendInfoId = #{mySpendInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="friendId != null" >
-        friendId = #{friendId,jdbcType=VARCHAR},
+      <if test="myMessageInfoId != null" >
+        myMessageInfoId = #{myMessageInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="userloginId != null" >
-        userloginId = #{userloginId,jdbcType=VARCHAR},
+      <if test="myFriendInfoId != null" >
+        myFriendInfoId = #{myFriendInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="integrationId != null" >
-        integrationId = #{integrationId,jdbcType=VARCHAR},
+      <if test="myIntegrationInfoId != null" >
+        myIntegrationInfoId = #{myIntegrationInfoId,jdbcType=VARCHAR},
       </if>
-      <if test="rankId != null" >
-        rankId = #{rankId,jdbcType=VARCHAR},
+      <if test="peopleListId != null" >
+        peopleListId = #{peopleListId,jdbcType=VARCHAR},
       </if>
-      <if test="whiteuserId != null" >
-        whiteuserId = #{whiteuserId,jdbcType=VARCHAR},
-      </if>
-      <if test="blackuserId != null" >
-        blackuserId = #{blackuserId,jdbcType=VARCHAR},
-      </if>
-      <if test="permissionId != null" >
-        PermissionId = #{permissionId,jdbcType=VARCHAR},
+      <if test="myPermissionInfoId != null" >
+        myPermissionInfoId = #{myPermissionInfoId,jdbcType=VARCHAR},
       </if>
     </set>
     where Id = #{id,jdbcType=VARCHAR}
@@ -395,17 +375,15 @@
       myTeamsId = #{myTeamsId,jdbcType=VARCHAR},
       myGamesId = #{myGamesId,jdbcType=VARCHAR},
       myStoresId = #{myStoresId,jdbcType=VARCHAR},
-      photoId = #{photoId,jdbcType=VARCHAR},
-      addressId = #{addressId,jdbcType=VARCHAR},
-      spendId = #{spendId,jdbcType=VARCHAR},
-      messageId = #{messageId,jdbcType=VARCHAR},
-      friendId = #{friendId,jdbcType=VARCHAR},
-      userloginId = #{userloginId,jdbcType=VARCHAR},
-      integrationId = #{integrationId,jdbcType=VARCHAR},
-      rankId = #{rankId,jdbcType=VARCHAR},
-      whiteuserId = #{whiteuserId,jdbcType=VARCHAR},
-      blackuserId = #{blackuserId,jdbcType=VARCHAR},
-      PermissionId = #{permissionId,jdbcType=VARCHAR}
+      photoInfoId = #{photoInfoId,jdbcType=VARCHAR},
+      myAddressId = #{myAddressId,jdbcType=VARCHAR},
+      myRankInfoId = #{myRankInfoId,jdbcType=VARCHAR},
+      mySpendInfoId = #{mySpendInfoId,jdbcType=VARCHAR},
+      myMessageInfoId = #{myMessageInfoId,jdbcType=VARCHAR},
+      myFriendInfoId = #{myFriendInfoId,jdbcType=VARCHAR},
+      myIntegrationInfoId = #{myIntegrationInfoId,jdbcType=VARCHAR},
+      peopleListId = #{peopleListId,jdbcType=VARCHAR},
+      myPermissionInfoId = #{myPermissionInfoId,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
