@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.renchaigao.zujuba.dao.mapper.GameBasicMapper" >
+  <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.dao.GameBasic" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="suitPeopleMax" property="suitPeopleMax" jdbcType="INTEGER" />
+    <result column="suitPeopleMin" property="suitPeopleMin" jdbcType="INTEGER" />
+    <result column="producer" property="producer" jdbcType="VARCHAR" />
+    <result column="producerId" property="producerId" jdbcType="VARCHAR" />
+    <result column="producerClass" property="producerClass" jdbcType="VARCHAR" />
+    <result column="playTimes" property="playTimes" jdbcType="INTEGER" />
+    <result column="teamTimes" property="teamTimes" jdbcType="INTEGER" />
+    <result column="playerNum" property="playerNum" jdbcType="INTEGER" />
+    <result column="gameDuration" property="gameDuration" jdbcType="INTEGER" />
+    <result column="deleteStyle" property="deleteStyle" jdbcType="BIT" />
+    <result column="upTime" property="upTime" jdbcType="VARCHAR" />
+    <result column="gameIntroduceId" property="gameIntroduceId" jdbcType="VARCHAR" />
+    <result column="evaluationId" property="evaluationId" jdbcType="VARCHAR" />
+    <result column="photoId" property="photoId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, name, category, introduce, suitPeopleMax, suitPeopleMin, producer, producerId, 
+    producerClass, playTimes, teamTimes, playerNum, gameDuration, deleteStyle, upTime, 
+    gameIntroduceId, evaluationId, photoId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from gameBasic
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from gameBasic
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.GameBasic" >
+    insert into gameBasic (Id, name, category, 
+      introduce, suitPeopleMax, suitPeopleMin, 
+      producer, producerId, producerClass, 
+      playTimes, teamTimes, playerNum, 
+      gameDuration, deleteStyle, upTime, 
+      gameIntroduceId, evaluationId, photoId
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{suitPeopleMax,jdbcType=INTEGER}, #{suitPeopleMin,jdbcType=INTEGER}, 
+      #{producer,jdbcType=VARCHAR}, #{producerId,jdbcType=VARCHAR}, #{producerClass,jdbcType=VARCHAR}, 
+      #{playTimes,jdbcType=INTEGER}, #{teamTimes,jdbcType=INTEGER}, #{playerNum,jdbcType=INTEGER}, 
+      #{gameDuration,jdbcType=INTEGER}, #{deleteStyle,jdbcType=BIT}, #{upTime,jdbcType=VARCHAR}, 
+      #{gameIntroduceId,jdbcType=VARCHAR}, #{evaluationId,jdbcType=VARCHAR}, #{photoId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.GameBasic" >
+    insert into gameBasic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="suitPeopleMax != null" >
+        suitPeopleMax,
+      </if>
+      <if test="suitPeopleMin != null" >
+        suitPeopleMin,
+      </if>
+      <if test="producer != null" >
+        producer,
+      </if>
+      <if test="producerId != null" >
+        producerId,
+      </if>
+      <if test="producerClass != null" >
+        producerClass,
+      </if>
+      <if test="playTimes != null" >
+        playTimes,
+      </if>
+      <if test="teamTimes != null" >
+        teamTimes,
+      </if>
+      <if test="playerNum != null" >
+        playerNum,
+      </if>
+      <if test="gameDuration != null" >
+        gameDuration,
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle,
+      </if>
+      <if test="upTime != null" >
+        upTime,
+      </if>
+      <if test="gameIntroduceId != null" >
+        gameIntroduceId,
+      </if>
+      <if test="evaluationId != null" >
+        evaluationId,
+      </if>
+      <if test="photoId != null" >
+        photoId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="suitPeopleMax != null" >
+        #{suitPeopleMax,jdbcType=INTEGER},
+      </if>
+      <if test="suitPeopleMin != null" >
+        #{suitPeopleMin,jdbcType=INTEGER},
+      </if>
+      <if test="producer != null" >
+        #{producer,jdbcType=VARCHAR},
+      </if>
+      <if test="producerId != null" >
+        #{producerId,jdbcType=VARCHAR},
+      </if>
+      <if test="producerClass != null" >
+        #{producerClass,jdbcType=VARCHAR},
+      </if>
+      <if test="playTimes != null" >
+        #{playTimes,jdbcType=INTEGER},
+      </if>
+      <if test="teamTimes != null" >
+        #{teamTimes,jdbcType=INTEGER},
+      </if>
+      <if test="playerNum != null" >
+        #{playerNum,jdbcType=INTEGER},
+      </if>
+      <if test="gameDuration != null" >
+        #{gameDuration,jdbcType=INTEGER},
+      </if>
+      <if test="deleteStyle != null" >
+        #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="gameIntroduceId != null" >
+        #{gameIntroduceId,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationId != null" >
+        #{evaluationId,jdbcType=VARCHAR},
+      </if>
+      <if test="photoId != null" >
+        #{photoId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.dao.GameBasic" >
+    update gameBasic
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="suitPeopleMax != null" >
+        suitPeopleMax = #{suitPeopleMax,jdbcType=INTEGER},
+      </if>
+      <if test="suitPeopleMin != null" >
+        suitPeopleMin = #{suitPeopleMin,jdbcType=INTEGER},
+      </if>
+      <if test="producer != null" >
+        producer = #{producer,jdbcType=VARCHAR},
+      </if>
+      <if test="producerId != null" >
+        producerId = #{producerId,jdbcType=VARCHAR},
+      </if>
+      <if test="producerClass != null" >
+        producerClass = #{producerClass,jdbcType=VARCHAR},
+      </if>
+      <if test="playTimes != null" >
+        playTimes = #{playTimes,jdbcType=INTEGER},
+      </if>
+      <if test="teamTimes != null" >
+        teamTimes = #{teamTimes,jdbcType=INTEGER},
+      </if>
+      <if test="playerNum != null" >
+        playerNum = #{playerNum,jdbcType=INTEGER},
+      </if>
+      <if test="gameDuration != null" >
+        gameDuration = #{gameDuration,jdbcType=INTEGER},
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle = #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        upTime = #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="gameIntroduceId != null" >
+        gameIntroduceId = #{gameIntroduceId,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationId != null" >
+        evaluationId = #{evaluationId,jdbcType=VARCHAR},
+      </if>
+      <if test="photoId != null" >
+        photoId = #{photoId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.dao.GameBasic" >
+    update gameBasic
+    set name = #{name,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      suitPeopleMax = #{suitPeopleMax,jdbcType=INTEGER},
+      suitPeopleMin = #{suitPeopleMin,jdbcType=INTEGER},
+      producer = #{producer,jdbcType=VARCHAR},
+      producerId = #{producerId,jdbcType=VARCHAR},
+      producerClass = #{producerClass,jdbcType=VARCHAR},
+      playTimes = #{playTimes,jdbcType=INTEGER},
+      teamTimes = #{teamTimes,jdbcType=INTEGER},
+      playerNum = #{playerNum,jdbcType=INTEGER},
+      gameDuration = #{gameDuration,jdbcType=INTEGER},
+      deleteStyle = #{deleteStyle,jdbcType=BIT},
+      upTime = #{upTime,jdbcType=VARCHAR},
+      gameIntroduceId = #{gameIntroduceId,jdbcType=VARCHAR},
+      evaluationId = #{evaluationId,jdbcType=VARCHAR},
+      photoId = #{photoId,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

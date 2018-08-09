@@ -1,6 +1,5 @@
 package com.renchaigao.zujuba.controller;
 
-import com.renchaigao.zujuba.dao.User;
 import com.renchaigao.zujuba.domain.response.ResponseEntity;
 import com.renchaigao.zujuba.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

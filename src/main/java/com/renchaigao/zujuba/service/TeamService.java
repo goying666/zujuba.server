@@ -1,6 +1,5 @@
 package com.renchaigao.zujuba.service;
 
-import com.renchaigao.zujuba.domain.TeamInfo;
 import com.renchaigao.zujuba.domain.response.ResponseEntity;
 
 public interface TeamService {

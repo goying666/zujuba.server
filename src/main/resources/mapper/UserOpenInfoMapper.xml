@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.renchaigao.zujuba.dao.mapper.UserOpenInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.dao.UserOpenInfo" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="userId" property="userId" jdbcType="VARCHAR" />
+    <result column="ageLevel" property="ageLevel" jdbcType="VARCHAR" />
+    <result column="nickName" property="nickName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="deleteStyle" property="deleteStyle" jdbcType="BIT" />
+    <result column="upTime" property="upTime" jdbcType="VARCHAR" />
+    <result column="integration" property="integration" jdbcType="INTEGER" />
+    <result column="teamTimes" property="teamTimes" jdbcType="INTEGER" />
+    <result column="gameTimes" property="gameTimes" jdbcType="INTEGER" />
+    <result column="openNote" property="openNote" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, userId, ageLevel, nickName, gender, job, deleteStyle, upTime, integration, teamTimes, 
+    gameTimes, openNote
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from userOpenInfo
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from userOpenInfo
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.UserOpenInfo" >
+    insert into userOpenInfo (Id, userId, ageLevel, 
+      nickName, gender, job, 
+      deleteStyle, upTime, integration, 
+      teamTimes, gameTimes, openNote
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{ageLevel,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{deleteStyle,jdbcType=BIT}, #{upTime,jdbcType=VARCHAR}, #{integration,jdbcType=INTEGER}, 
+      #{teamTimes,jdbcType=INTEGER}, #{gameTimes,jdbcType=INTEGER}, #{openNote,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.UserOpenInfo" >
+    insert into userOpenInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="ageLevel != null" >
+        ageLevel,
+      </if>
+      <if test="nickName != null" >
+        nickName,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle,
+      </if>
+      <if test="upTime != null" >
+        upTime,
+      </if>
+      <if test="integration != null" >
+        integration,
+      </if>
+      <if test="teamTimes != null" >
+        teamTimes,
+      </if>
+      <if test="gameTimes != null" >
+        gameTimes,
+      </if>
+      <if test="openNote != null" >
+        openNote,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="ageLevel != null" >
+        #{ageLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStyle != null" >
+        #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="integration != null" >
+        #{integration,jdbcType=INTEGER},
+      </if>
+      <if test="teamTimes != null" >
+        #{teamTimes,jdbcType=INTEGER},
+      </if>
+      <if test="gameTimes != null" >
+        #{gameTimes,jdbcType=INTEGER},
+      </if>
+      <if test="openNote != null" >
+        #{openNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.dao.UserOpenInfo" >
+    update userOpenInfo
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="ageLevel != null" >
+        ageLevel = #{ageLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nickName = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle = #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        upTime = #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="integration != null" >
+        integration = #{integration,jdbcType=INTEGER},
+      </if>
+      <if test="teamTimes != null" >
+        teamTimes = #{teamTimes,jdbcType=INTEGER},
+      </if>
+      <if test="gameTimes != null" >
+        gameTimes = #{gameTimes,jdbcType=INTEGER},
+      </if>
+      <if test="openNote != null" >
+        openNote = #{openNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.dao.UserOpenInfo" >
+    update userOpenInfo
+    set userId = #{userId,jdbcType=VARCHAR},
+      ageLevel = #{ageLevel,jdbcType=VARCHAR},
+      nickName = #{nickName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      deleteStyle = #{deleteStyle,jdbcType=BIT},
+      upTime = #{upTime,jdbcType=VARCHAR},
+      integration = #{integration,jdbcType=INTEGER},
+      teamTimes = #{teamTimes,jdbcType=INTEGER},
+      gameTimes = #{gameTimes,jdbcType=INTEGER},
+      openNote = #{openNote,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -3,15 +3,13 @@ package com.renchaigao.zujuba.dao.mapper;
 import com.renchaigao.zujuba.dao.User;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(Integer id);
-
-    User selectByTelephone(String telephone);
+    User selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(User record);
 

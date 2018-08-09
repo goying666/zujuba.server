@@ -1,6 +1,5 @@
 package com.renchaigao.zujuba;
 
-import com.renchaigao.zujuba.dao.dbtestuse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,13 +1,8 @@
 package com.renchaigao.zujuba.service.impl;
 
-import com.renchaigao.zujuba.dao.User;
-import com.renchaigao.zujuba.dao.UserToken;
-import com.renchaigao.zujuba.dao.mapper.UserMapper;
-import com.renchaigao.zujuba.dao.mapper.UserTokenMapper;
 import com.renchaigao.zujuba.domain.response.RespCode;
 import com.renchaigao.zujuba.domain.response.ResponseEntity;
 import com.renchaigao.zujuba.function.TokenMaker;
-import com.renchaigao.zujuba.function.dateUse;
 import com.renchaigao.zujuba.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

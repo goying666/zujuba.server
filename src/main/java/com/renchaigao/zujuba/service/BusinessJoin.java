@@ -1,7 +1,5 @@
 package com.renchaigao.zujuba.service;
 
-import com.alibaba.fastjson.JSONObject;
-import com.renchaigao.zujuba.dao.Store;
 import com.renchaigao.zujuba.domain.response.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 

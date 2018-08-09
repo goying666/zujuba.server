@@ -1,11 +1,37 @@
 package com.renchaigao.zujuba.dao;
 
-import java.util.Date;
-
 public class Team {
-    private Integer id;
+    private String id;
 
-    private String playerinfoId;
+    private Integer playerMax;
+
+    private Integer playerMin;
+
+    private Integer playerNow;
+
+    private String createTime;
+
+    private String startDate;
+
+    private String startTime;
+
+    private String endTime;
+
+    private String createrStyle;
+
+    private String createrNote;
+
+    private String state;
+
+    private String teamName;
+
+    private String createrId;
+
+    private Boolean deleteStyle;
+
+    private String upTime;
+
+    private String playersInfoId;
 
     private String gameId;
 
@@ -17,44 +43,132 @@ public class Team {
 
     private String filterId;
 
-    private String playerMax;
-
-    private String playerMin;
-
-    private String playerNow;
-
-    private Integer createrId;
-
-    private Integer ownerId;
-
-    private String createTime;
-
-    private String startDate;
-
-    private String startTime;
-
-    private Date endTime;
-
-    private String createrStyle;
-
-    private String note;
-
-    private String teamstate;
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
-    public String getPlayerinfoId() {
-        return playerinfoId;
+    public Integer getPlayerMax() {
+        return playerMax;
     }
 
-    public void setPlayerinfoId(String playerinfoId) {
-        this.playerinfoId = playerinfoId == null ? null : playerinfoId.trim();
+    public void setPlayerMax(Integer playerMax) {
+        this.playerMax = playerMax;
+    }
+
+    public Integer getPlayerMin() {
+        return playerMin;
+    }
+
+    public void setPlayerMin(Integer playerMin) {
+        this.playerMin = playerMin;
+    }
+
+    public Integer getPlayerNow() {
+        return playerNow;
+    }
+
+    public void setPlayerNow(Integer playerNow) {
+        this.playerNow = playerNow;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate == null ? null : startDate.trim();
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime == null ? null : startTime.trim();
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime == null ? null : endTime.trim();
+    }
+
+    public String getCreaterStyle() {
+        return createrStyle;
+    }
+
+    public void setCreaterStyle(String createrStyle) {
+        this.createrStyle = createrStyle == null ? null : createrStyle.trim();
+    }
+
+    public String getCreaterNote() {
+        return createrNote;
+    }
+
+    public void setCreaterNote(String createrNote) {
+        this.createrNote = createrNote == null ? null : createrNote.trim();
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state == null ? null : state.trim();
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName == null ? null : teamName.trim();
+    }
+
+    public String getCreaterId() {
+        return createrId;
+    }
+
+    public void setCreaterId(String createrId) {
+        this.createrId = createrId == null ? null : createrId.trim();
+    }
+
+    public Boolean getDeleteStyle() {
+        return deleteStyle;
+    }
+
+    public void setDeleteStyle(Boolean deleteStyle) {
+        this.deleteStyle = deleteStyle;
+    }
+
+    public String getUpTime() {
+        return upTime;
+    }
+
+    public void setUpTime(String upTime) {
+        this.upTime = upTime == null ? null : upTime.trim();
+    }
+
+    public String getPlayersInfoId() {
+        return playersInfoId;
+    }
+
+    public void setPlayersInfoId(String playersInfoId) {
+        this.playersInfoId = playersInfoId == null ? null : playersInfoId.trim();
     }
 
     public String getGameId() {
@@ -95,101 +209,5 @@ public class Team {
 
     public void setFilterId(String filterId) {
         this.filterId = filterId == null ? null : filterId.trim();
-    }
-
-    public String getPlayerMax() {
-        return playerMax;
-    }
-
-    public void setPlayerMax(String playerMax) {
-        this.playerMax = playerMax == null ? null : playerMax.trim();
-    }
-
-    public String getPlayerMin() {
-        return playerMin;
-    }
-
-    public void setPlayerMin(String playerMin) {
-        this.playerMin = playerMin == null ? null : playerMin.trim();
-    }
-
-    public String getPlayerNow() {
-        return playerNow;
-    }
-
-    public void setPlayerNow(String playerNow) {
-        this.playerNow = playerNow == null ? null : playerNow.trim();
-    }
-
-    public Integer getCreaterId() {
-        return createrId;
-    }
-
-    public void setCreaterId(Integer createrId) {
-        this.createrId = createrId;
-    }
-
-    public Integer getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(Integer ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime == null ? null : createTime.trim();
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate == null ? null : startDate.trim();
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime == null ? null : startTime.trim();
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getCreaterStyle() {
-        return createrStyle;
-    }
-
-    public void setCreaterStyle(String createrStyle) {
-        this.createrStyle = createrStyle == null ? null : createrStyle.trim();
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note == null ? null : note.trim();
-    }
-
-    public String getTeamstate() {
-        return teamstate;
-    }
-
-    public void setTeamstate(String teamstate) {
-        this.teamstate = teamstate == null ? null : teamstate.trim();
     }
 }

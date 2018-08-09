@@ -2,93 +2,66 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.renchaigao.zujuba.dao.mapper.TeamMapper" >
   <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.dao.Team" >
-    <id column="Id" property="id" jdbcType="INTEGER" />
-    <result column="playerinfoId" property="playerinfoId" jdbcType="VARCHAR" />
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="playerMax" property="playerMax" jdbcType="INTEGER" />
+    <result column="playerMin" property="playerMin" jdbcType="INTEGER" />
+    <result column="playerNow" property="playerNow" jdbcType="INTEGER" />
+    <result column="createTime" property="createTime" jdbcType="VARCHAR" />
+    <result column="startDate" property="startDate" jdbcType="VARCHAR" />
+    <result column="startTime" property="startTime" jdbcType="VARCHAR" />
+    <result column="endTime" property="endTime" jdbcType="VARCHAR" />
+    <result column="createrStyle" property="createrStyle" jdbcType="VARCHAR" />
+    <result column="createrNote" property="createrNote" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="teamName" property="teamName" jdbcType="VARCHAR" />
+    <result column="createrId" property="createrId" jdbcType="VARCHAR" />
+    <result column="deleteStyle" property="deleteStyle" jdbcType="BIT" />
+    <result column="upTime" property="upTime" jdbcType="VARCHAR" />
+    <result column="playersInfoId" property="playersInfoId" jdbcType="VARCHAR" />
     <result column="gameId" property="gameId" jdbcType="VARCHAR" />
     <result column="addressId" property="addressId" jdbcType="VARCHAR" />
     <result column="spendId" property="spendId" jdbcType="VARCHAR" />
     <result column="messageId" property="messageId" jdbcType="VARCHAR" />
     <result column="filterId" property="filterId" jdbcType="VARCHAR" />
-    <result column="playerMax" property="playerMax" jdbcType="VARCHAR" />
-    <result column="playerMin" property="playerMin" jdbcType="VARCHAR" />
-    <result column="playerNow" property="playerNow" jdbcType="VARCHAR" />
-    <result column="createrId" property="createrId" jdbcType="INTEGER" />
-    <result column="ownerId" property="ownerId" jdbcType="INTEGER" />
-    <result column="createTime" property="createTime" jdbcType="VARCHAR" />
-    <result column="startDate" property="startDate" jdbcType="VARCHAR" />
-    <result column="startTime" property="startTime" jdbcType="VARCHAR" />
-    <result column="endTime" property="endTime" jdbcType="TIMESTAMP" />
-    <result column="createrStyle" property="createrStyle" jdbcType="VARCHAR" />
-    <result column="note" property="note" jdbcType="VARCHAR" />
-    <result column="teamstate" property="teamstate" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, playerinfoId, gameId, addressId, spendId, messageId, filterId, playerMax, playerMin, 
-    playerNow, createrId, ownerId, createTime, startDate, startTime, endTime, createrStyle, 
-    note, teamstate
+    Id, playerMax, playerMin, playerNow, createTime, startDate, startTime, endTime, createrStyle, 
+    createrNote, state, teamName, createrId, deleteStyle, upTime, playersInfoId, gameId, 
+    addressId, spendId, messageId, filterId
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from team
-    where Id = #{id,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=VARCHAR}
   </select>
-
-
-  <select id="selectAllTeam" resultMap="BaseResultMap" >
-    select
-    <include refid="Base_Column_List" />
-    from team
-  </select>
-  <select id="selectByCreaterId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
-    <include refid="Base_Column_List" />
-    from team
-    where createrId = #{createrId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from team
-    where Id = #{id,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.Team" useGeneratedKeys="true" keyProperty="id">
-    insert into team (Id, playerinfoId, gameId, 
-      addressId, spendId, messageId, 
-      filterId, playerMax, playerMin, 
-      playerNow, createrId, ownerId, 
-      createTime, startDate, startTime, 
-      endTime, createrStyle, note, 
-      teamstate)
-    values (#{id,jdbcType=INTEGER}, #{playerinfoId,jdbcType=VARCHAR}, #{gameId,jdbcType=VARCHAR}, 
-      #{addressId,jdbcType=VARCHAR}, #{spendId,jdbcType=VARCHAR}, #{messageId,jdbcType=VARCHAR}, 
-      #{filterId,jdbcType=VARCHAR}, #{playerMax,jdbcType=VARCHAR}, #{playerMin,jdbcType=VARCHAR}, 
-      #{playerNow,jdbcType=VARCHAR}, #{createrId,jdbcType=INTEGER}, #{ownerId,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=VARCHAR}, #{startDate,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{createrStyle,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
-      #{teamstate,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.Team" >
+    insert into team (Id, playerMax, playerMin, 
+      playerNow, createTime, startDate, 
+      startTime, endTime, createrStyle, 
+      createrNote, state, teamName, 
+      createrId, deleteStyle, upTime, 
+      playersInfoId, gameId, addressId, 
+      spendId, messageId, filterId
+      )
+    values (#{id,jdbcType=VARCHAR}, #{playerMax,jdbcType=INTEGER}, #{playerMin,jdbcType=INTEGER}, 
+      #{playerNow,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, #{startDate,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{createrStyle,jdbcType=VARCHAR}, 
+      #{createrNote,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{teamName,jdbcType=VARCHAR}, 
+      #{createrId,jdbcType=VARCHAR}, #{deleteStyle,jdbcType=BIT}, #{upTime,jdbcType=VARCHAR}, 
+      #{playersInfoId,jdbcType=VARCHAR}, #{gameId,jdbcType=VARCHAR}, #{addressId,jdbcType=VARCHAR}, 
+      #{spendId,jdbcType=VARCHAR}, #{messageId,jdbcType=VARCHAR}, #{filterId,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.Team" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.Team" >
     insert into team
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         Id,
-      </if>
-      <if test="playerinfoId != null" >
-        playerinfoId,
-      </if>
-      <if test="gameId != null" >
-        gameId,
-      </if>
-      <if test="addressId != null" >
-        addressId,
-      </if>
-      <if test="spendId != null" >
-        spendId,
-      </if>
-      <if test="messageId != null" >
-        messageId,
-      </if>
-      <if test="filterId != null" >
-        filterId,
       </if>
       <if test="playerMax != null" >
         playerMax,
@@ -98,12 +71,6 @@
       </if>
       <if test="playerNow != null" >
         playerNow,
-      </if>
-      <if test="createrId != null" >
-        createrId,
-      </if>
-      <if test="ownerId != null" >
-        ownerId,
       </if>
       <if test="createTime != null" >
         createTime,
@@ -120,19 +87,91 @@
       <if test="createrStyle != null" >
         createrStyle,
       </if>
-      <if test="note != null" >
-        note,
+      <if test="createrNote != null" >
+        createrNote,
       </if>
-      <if test="teamstate != null" >
-        teamstate,
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="teamName != null" >
+        teamName,
+      </if>
+      <if test="createrId != null" >
+        createrId,
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle,
+      </if>
+      <if test="upTime != null" >
+        upTime,
+      </if>
+      <if test="playersInfoId != null" >
+        playersInfoId,
+      </if>
+      <if test="gameId != null" >
+        gameId,
+      </if>
+      <if test="addressId != null" >
+        addressId,
+      </if>
+      <if test="spendId != null" >
+        spendId,
+      </if>
+      <if test="messageId != null" >
+        messageId,
+      </if>
+      <if test="filterId != null" >
+        filterId,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
-      <if test="playerinfoId != null" >
-        #{playerinfoId,jdbcType=VARCHAR},
+      <if test="playerMax != null" >
+        #{playerMax,jdbcType=INTEGER},
+      </if>
+      <if test="playerMin != null" >
+        #{playerMin,jdbcType=INTEGER},
+      </if>
+      <if test="playerNow != null" >
+        #{playerNow,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createrStyle != null" >
+        #{createrStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="createrNote != null" >
+        #{createrNote,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null" >
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStyle != null" >
+        #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="playersInfoId != null" >
+        #{playersInfoId,jdbcType=VARCHAR},
       </if>
       <if test="gameId != null" >
         #{gameId,jdbcType=VARCHAR},
@@ -149,49 +188,55 @@
       <if test="filterId != null" >
         #{filterId,jdbcType=VARCHAR},
       </if>
-      <if test="playerMax != null" >
-        #{playerMax,jdbcType=VARCHAR},
-      </if>
-      <if test="playerMin != null" >
-        #{playerMin,jdbcType=VARCHAR},
-      </if>
-      <if test="playerNow != null" >
-        #{playerNow,jdbcType=VARCHAR},
-      </if>
-      <if test="createrId != null" >
-        #{createrId,jdbcType=INTEGER},
-      </if>
-      <if test="ownerId != null" >
-        #{ownerId,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=VARCHAR},
-      </if>
-      <if test="startDate != null" >
-        #{startDate,jdbcType=VARCHAR},
-      </if>
-      <if test="startTime != null" >
-        #{startTime,jdbcType=VARCHAR},
-      </if>
-      <if test="endTime != null" >
-        #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createrStyle != null" >
-        #{createrStyle,jdbcType=VARCHAR},
-      </if>
-      <if test="note != null" >
-        #{note,jdbcType=VARCHAR},
-      </if>
-      <if test="teamstate != null" >
-        #{teamstate,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.dao.Team" >
     update team
     <set >
-      <if test="playerinfoId != null" >
-        playerinfoId = #{playerinfoId,jdbcType=VARCHAR},
+      <if test="playerMax != null" >
+        playerMax = #{playerMax,jdbcType=INTEGER},
+      </if>
+      <if test="playerMin != null" >
+        playerMin = #{playerMin,jdbcType=INTEGER},
+      </if>
+      <if test="playerNow != null" >
+        playerNow = #{playerNow,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        startDate = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        startTime = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        endTime = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createrStyle != null" >
+        createrStyle = #{createrStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="createrNote != null" >
+        createrNote = #{createrNote,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null" >
+        teamName = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        createrId = #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle = #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        upTime = #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="playersInfoId != null" >
+        playersInfoId = #{playersInfoId,jdbcType=VARCHAR},
       </if>
       <if test="gameId != null" >
         gameId = #{gameId,jdbcType=VARCHAR},
@@ -208,65 +253,31 @@
       <if test="filterId != null" >
         filterId = #{filterId,jdbcType=VARCHAR},
       </if>
-      <if test="playerMax != null" >
-        playerMax = #{playerMax,jdbcType=VARCHAR},
-      </if>
-      <if test="playerMin != null" >
-        playerMin = #{playerMin,jdbcType=VARCHAR},
-      </if>
-      <if test="playerNow != null" >
-        playerNow = #{playerNow,jdbcType=VARCHAR},
-      </if>
-      <if test="createrId != null" >
-        createrId = #{createrId,jdbcType=INTEGER},
-      </if>
-      <if test="ownerId != null" >
-        ownerId = #{ownerId,jdbcType=INTEGER},
-      </if>
-      <if test="createTime != null" >
-        createTime = #{createTime,jdbcType=VARCHAR},
-      </if>
-      <if test="startDate != null" >
-        startDate = #{startDate,jdbcType=VARCHAR},
-      </if>
-      <if test="startTime != null" >
-        startTime = #{startTime,jdbcType=VARCHAR},
-      </if>
-      <if test="endTime != null" >
-        endTime = #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createrStyle != null" >
-        createrStyle = #{createrStyle,jdbcType=VARCHAR},
-      </if>
-      <if test="note != null" >
-        note = #{note,jdbcType=VARCHAR},
-      </if>
-      <if test="teamstate != null" >
-        teamstate = #{teamstate,jdbcType=VARCHAR},
-      </if>
     </set>
-    where Id = #{id,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.dao.Team" >
     update team
-    set playerinfoId = #{playerinfoId,jdbcType=VARCHAR},
+    set playerMax = #{playerMax,jdbcType=INTEGER},
+      playerMin = #{playerMin,jdbcType=INTEGER},
+      playerNow = #{playerNow,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=VARCHAR},
+      startDate = #{startDate,jdbcType=VARCHAR},
+      startTime = #{startTime,jdbcType=VARCHAR},
+      endTime = #{endTime,jdbcType=VARCHAR},
+      createrStyle = #{createrStyle,jdbcType=VARCHAR},
+      createrNote = #{createrNote,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      teamName = #{teamName,jdbcType=VARCHAR},
+      createrId = #{createrId,jdbcType=VARCHAR},
+      deleteStyle = #{deleteStyle,jdbcType=BIT},
+      upTime = #{upTime,jdbcType=VARCHAR},
+      playersInfoId = #{playersInfoId,jdbcType=VARCHAR},
       gameId = #{gameId,jdbcType=VARCHAR},
       addressId = #{addressId,jdbcType=VARCHAR},
       spendId = #{spendId,jdbcType=VARCHAR},
       messageId = #{messageId,jdbcType=VARCHAR},
-      filterId = #{filterId,jdbcType=VARCHAR},
-      playerMax = #{playerMax,jdbcType=VARCHAR},
-      playerMin = #{playerMin,jdbcType=VARCHAR},
-      playerNow = #{playerNow,jdbcType=VARCHAR},
-      createrId = #{createrId,jdbcType=INTEGER},
-      ownerId = #{ownerId,jdbcType=INTEGER},
-      createTime = #{createTime,jdbcType=VARCHAR},
-      startDate = #{startDate,jdbcType=VARCHAR},
-      startTime = #{startTime,jdbcType=VARCHAR},
-      endTime = #{endTime,jdbcType=TIMESTAMP},
-      createrStyle = #{createrStyle,jdbcType=VARCHAR},
-      note = #{note,jdbcType=VARCHAR},
-      teamstate = #{teamstate,jdbcType=VARCHAR}
-    where Id = #{id,jdbcType=INTEGER}
+      filterId = #{filterId,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

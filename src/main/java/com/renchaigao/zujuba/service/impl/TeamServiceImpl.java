@@ -2,11 +2,7 @@ package com.renchaigao.zujuba.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.renchaigao.zujuba.dao.User;
-import com.renchaigao.zujuba.dao.mapper.UserMapper;
 import com.renchaigao.zujuba.domain.*;
-import com.renchaigao.zujuba.dao.Team;
-import com.renchaigao.zujuba.dao.mapper.TeamMapper;
 import com.renchaigao.zujuba.domain.response.RespCode;
 import com.renchaigao.zujuba.domain.response.ResponseEntity;
 import com.renchaigao.zujuba.function.UUIDUtil;
@@ -14,8 +10,6 @@ import com.renchaigao.zujuba.service.TeamService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

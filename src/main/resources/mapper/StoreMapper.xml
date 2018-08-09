@@ -1,407 +1,330 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.renchaigao.zujuba.dao.mapper.StoreMapper">
-    <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.dao.Store">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="address" property="address" jdbcType="VARCHAR"/>
-        <result column="storeclass" property="storeclass" jdbcType="VARCHAR"/>
-        <result column="latitude" property="latitude" jdbcType="DOUBLE"/>
-        <result column="longitude" property="longitude" jdbcType="DOUBLE"/>
-        <result column="picturesurl" property="picturesurl" jdbcType="VARCHAR"/>
-        <result column="maxpeoplenum" property="maxpeoplenum" jdbcType="INTEGER"/>
-        <result column="maxdesknum" property="maxdesknum" jdbcType="INTEGER"/>
-        <result column="status" property="status" jdbcType="VARCHAR"/>
-        <result column="workingtimeid" property="workingtimeid" jdbcType="INTEGER"/>
-        <result column="telephonenum" property="telephonenum" jdbcType="VARCHAR"/>
-        <result column="phonenum" property="phonenum" jdbcType="VARCHAR"/>
-        <result column="contact" property="contact" jdbcType="VARCHAR"/>
-        <result column="starnum" property="starnum" jdbcType="INTEGER"/>
-        <result column="assessid" property="assessid" jdbcType="INTEGER"/>
-        <result column="placeinfo" property="placeinfo" jdbcType="VARCHAR"/>
-        <result column="tipsinfo" property="tipsinfo" jdbcType="VARCHAR"/>
-        <result column="otherid" property="otherid" jdbcType="INTEGER"/>
-        <result column="ownerid" property="ownerid" jdbcType="INTEGER"/>
-        <result column="city" property="city" jdbcType="VARCHAR"/>
-        <result column="citycode" property="citycode" jdbcType="VARCHAR"/>
-        <result column="country" property="country" jdbcType="VARCHAR"/>
-        <result column="district" property="district" jdbcType="VARCHAR"/>
-        <result column="formataddress" property="formataddress" jdbcType="VARCHAR"/>
-        <result column="neighborhood" property="neighborhood" jdbcType="VARCHAR"/>
-        <result column="province" property="province" jdbcType="VARCHAR"/>
-        <result column="towncode" property="towncode" jdbcType="VARCHAR"/>
-        <result column="township" property="township" jdbcType="VARCHAR"/>
-        <result column="hardware" property="hardware" jdbcType="INTEGER"/>
-        <result column="storeinfo" property="storeinfo" jdbcType="VARCHAR"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-    id, name, address, storeclass, latitude, longitude, picturesurl, maxpeoplenum, maxdesknum, 
-    status, workingtimeid, telephonenum, phonenum, contact, starnum, assessid, placeinfo, 
-    tipsinfo, otherid, ownerid, city, citycode, country, district, formataddress, neighborhood, 
-    province, towncode, township, hardware, storeinfo
+<mapper namespace="com.renchaigao.zujuba.dao.mapper.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.dao.Store" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="ownerId" property="ownerId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="createrId" property="createrId" jdbcType="VARCHAR" />
+    <result column="storeclass" property="storeclass" jdbcType="VARCHAR" />
+    <result column="phonenum" property="phonenum" jdbcType="VARCHAR" />
+    <result column="telephonenum" property="telephonenum" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="placeinfo" property="placeinfo" jdbcType="VARCHAR" />
+    <result column="tipsinfo" property="tipsinfo" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="deleteStyle" property="deleteStyle" jdbcType="BIT" />
+    <result column="upTime" property="upTime" jdbcType="VARCHAR" />
+    <result column="addressId" property="addressId" jdbcType="VARCHAR" />
+    <result column="storeTeamId" property="storeTeamId" jdbcType="VARCHAR" />
+    <result column="statusId" property="statusId" jdbcType="VARCHAR" />
+    <result column="shoppingId" property="shoppingId" jdbcType="VARCHAR" />
+    <result column="evaluationId" property="evaluationId" jdbcType="VARCHAR" />
+    <result column="packageId" property="packageId" jdbcType="VARCHAR" />
+    <result column="picturesPathId" property="picturesPathId" jdbcType="VARCHAR" />
+    <result column="hardwareId" property="hardwareId" jdbcType="VARCHAR" />
+    <result column="equipmentId" property="equipmentId" jdbcType="VARCHAR" />
+    <result column="integralId" property="integralId" jdbcType="VARCHAR" />
+    <result column="historyId" property="historyId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, ownerId, name, createrId, storeclass, phonenum, telephonenum, contact, placeinfo, 
+    tipsinfo, createTime, state, deleteStyle, upTime, addressId, storeTeamId, statusId, 
+    shoppingId, evaluationId, packageId, picturesPathId, hardwareId, equipmentId, integralId, 
+    historyId
   </sql>
-    <select id="selectStoreByCityCode" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select
-        <include refid="Base_Column_List"/>
-        from store
-        where citycode = #{citycode,jdbcType=VARCHAR}
-    </select>
-
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-        select
-        <include refid="Base_Column_List"/>
-        from store
-        where id = #{id,jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from store
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from store
-    where id = #{id,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=VARCHAR}
   </delete>
-    <insert id="insert" parameterType="com.renchaigao.zujuba.dao.Store" useGeneratedKeys="true" keyProperty="id">
-    insert into store (id, name, address, 
-      storeclass, latitude, longitude, 
-      picturesurl, maxpeoplenum, maxdesknum, 
-      status, workingtimeid, telephonenum, 
-      phonenum, contact, starnum, 
-      assessid, placeinfo, tipsinfo, 
-      otherid, ownerid, city, 
-      citycode, country, district, 
-      formataddress, neighborhood, province, 
-      towncode, township, hardware, 
-      storeinfo)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{storeclass,jdbcType=VARCHAR}, #{latitude,jdbcType=DOUBLE}, #{longitude,jdbcType=DOUBLE}, 
-      #{picturesurl,jdbcType=VARCHAR}, #{maxpeoplenum,jdbcType=INTEGER}, #{maxdesknum,jdbcType=INTEGER}, 
-      #{status,jdbcType=VARCHAR}, #{workingtimeid,jdbcType=INTEGER}, #{telephonenum,jdbcType=VARCHAR}, 
-      #{phonenum,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{starnum,jdbcType=INTEGER}, 
-      #{assessid,jdbcType=INTEGER}, #{placeinfo,jdbcType=VARCHAR}, #{tipsinfo,jdbcType=VARCHAR}, 
-      #{otherid,jdbcType=INTEGER}, #{ownerid,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, 
-      #{citycode,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, 
-      #{formataddress,jdbcType=VARCHAR}, #{neighborhood,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
-      #{towncode,jdbcType=VARCHAR}, #{township,jdbcType=VARCHAR}, #{hardware,jdbcType=INTEGER}, 
-      #{storeinfo,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.Store" >
+    insert into store (Id, ownerId, name, 
+      createrId, storeclass, phonenum, 
+      telephonenum, contact, placeinfo, 
+      tipsinfo, createTime, state, 
+      deleteStyle, upTime, addressId, 
+      storeTeamId, statusId, shoppingId, 
+      evaluationId, packageId, picturesPathId, 
+      hardwareId, equipmentId, integralId, 
+      historyId)
+    values (#{id,jdbcType=VARCHAR}, #{ownerId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{createrId,jdbcType=VARCHAR}, #{storeclass,jdbcType=VARCHAR}, #{phonenum,jdbcType=VARCHAR}, 
+      #{telephonenum,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{placeinfo,jdbcType=VARCHAR}, 
+      #{tipsinfo,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{deleteStyle,jdbcType=BIT}, #{upTime,jdbcType=VARCHAR}, #{addressId,jdbcType=VARCHAR}, 
+      #{storeTeamId,jdbcType=VARCHAR}, #{statusId,jdbcType=VARCHAR}, #{shoppingId,jdbcType=VARCHAR}, 
+      #{evaluationId,jdbcType=VARCHAR}, #{packageId,jdbcType=VARCHAR}, #{picturesPathId,jdbcType=VARCHAR}, 
+      #{hardwareId,jdbcType=VARCHAR}, #{equipmentId,jdbcType=VARCHAR}, #{integralId,jdbcType=VARCHAR}, 
+      #{historyId,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.Store">
-        insert into store
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="name != null">
-                name,
-            </if>
-            <if test="address != null">
-                address,
-            </if>
-            <if test="storeclass != null">
-                storeclass,
-            </if>
-            <if test="latitude != null">
-                latitude,
-            </if>
-            <if test="longitude != null">
-                longitude,
-            </if>
-            <if test="picturesurl != null">
-                picturesurl,
-            </if>
-            <if test="maxpeoplenum != null">
-                maxpeoplenum,
-            </if>
-            <if test="maxdesknum != null">
-                maxdesknum,
-            </if>
-            <if test="status != null">
-                status,
-            </if>
-            <if test="workingtimeid != null">
-                workingtimeid,
-            </if>
-            <if test="telephonenum != null">
-                telephonenum,
-            </if>
-            <if test="phonenum != null">
-                phonenum,
-            </if>
-            <if test="contact != null">
-                contact,
-            </if>
-            <if test="starnum != null">
-                starnum,
-            </if>
-            <if test="assessid != null">
-                assessid,
-            </if>
-            <if test="placeinfo != null">
-                placeinfo,
-            </if>
-            <if test="tipsinfo != null">
-                tipsinfo,
-            </if>
-            <if test="otherid != null">
-                otherid,
-            </if>
-            <if test="ownerid != null">
-                ownerid,
-            </if>
-            <if test="city != null">
-                city,
-            </if>
-            <if test="citycode != null">
-                citycode,
-            </if>
-            <if test="country != null">
-                country,
-            </if>
-            <if test="district != null">
-                district,
-            </if>
-            <if test="formataddress != null">
-                formataddress,
-            </if>
-            <if test="neighborhood != null">
-                neighborhood,
-            </if>
-            <if test="province != null">
-                province,
-            </if>
-            <if test="towncode != null">
-                towncode,
-            </if>
-            <if test="township != null">
-                township,
-            </if>
-            <if test="hardware != null">
-                hardware,
-            </if>
-            <if test="storeinfo != null">
-                storeinfo,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="name != null">
-                #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="address != null">
-                #{address,jdbcType=VARCHAR},
-            </if>
-            <if test="storeclass != null">
-                #{storeclass,jdbcType=VARCHAR},
-            </if>
-            <if test="latitude != null">
-                #{latitude,jdbcType=DOUBLE},
-            </if>
-            <if test="longitude != null">
-                #{longitude,jdbcType=DOUBLE},
-            </if>
-            <if test="picturesurl != null">
-                #{picturesurl,jdbcType=VARCHAR},
-            </if>
-            <if test="maxpeoplenum != null">
-                #{maxpeoplenum,jdbcType=INTEGER},
-            </if>
-            <if test="maxdesknum != null">
-                #{maxdesknum,jdbcType=INTEGER},
-            </if>
-            <if test="status != null">
-                #{status,jdbcType=VARCHAR},
-            </if>
-            <if test="workingtimeid != null">
-                #{workingtimeid,jdbcType=INTEGER},
-            </if>
-            <if test="telephonenum != null">
-                #{telephonenum,jdbcType=VARCHAR},
-            </if>
-            <if test="phonenum != null">
-                #{phonenum,jdbcType=VARCHAR},
-            </if>
-            <if test="contact != null">
-                #{contact,jdbcType=VARCHAR},
-            </if>
-            <if test="starnum != null">
-                #{starnum,jdbcType=INTEGER},
-            </if>
-            <if test="assessid != null">
-                #{assessid,jdbcType=INTEGER},
-            </if>
-            <if test="placeinfo != null">
-                #{placeinfo,jdbcType=VARCHAR},
-            </if>
-            <if test="tipsinfo != null">
-                #{tipsinfo,jdbcType=VARCHAR},
-            </if>
-            <if test="otherid != null">
-                #{otherid,jdbcType=INTEGER},
-            </if>
-            <if test="ownerid != null">
-                #{ownerid,jdbcType=INTEGER},
-            </if>
-            <if test="city != null">
-                #{city,jdbcType=VARCHAR},
-            </if>
-            <if test="citycode != null">
-                #{citycode,jdbcType=VARCHAR},
-            </if>
-            <if test="country != null">
-                #{country,jdbcType=VARCHAR},
-            </if>
-            <if test="district != null">
-                #{district,jdbcType=VARCHAR},
-            </if>
-            <if test="formataddress != null">
-                #{formataddress,jdbcType=VARCHAR},
-            </if>
-            <if test="neighborhood != null">
-                #{neighborhood,jdbcType=VARCHAR},
-            </if>
-            <if test="province != null">
-                #{province,jdbcType=VARCHAR},
-            </if>
-            <if test="towncode != null">
-                #{towncode,jdbcType=VARCHAR},
-            </if>
-            <if test="township != null">
-                #{township,jdbcType=VARCHAR},
-            </if>
-            <if test="hardware != null">
-                #{hardware,jdbcType=INTEGER},
-            </if>
-            <if test="storeinfo != null">
-                #{storeinfo,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.dao.Store">
-        update store
-        <set>
-            <if test="name != null">
-                name = #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="address != null">
-                address = #{address,jdbcType=VARCHAR},
-            </if>
-            <if test="storeclass != null">
-                storeclass = #{storeclass,jdbcType=VARCHAR},
-            </if>
-            <if test="latitude != null">
-                latitude = #{latitude,jdbcType=DOUBLE},
-            </if>
-            <if test="longitude != null">
-                longitude = #{longitude,jdbcType=DOUBLE},
-            </if>
-            <if test="picturesurl != null">
-                picturesurl = #{picturesurl,jdbcType=VARCHAR},
-            </if>
-            <if test="maxpeoplenum != null">
-                maxpeoplenum = #{maxpeoplenum,jdbcType=INTEGER},
-            </if>
-            <if test="maxdesknum != null">
-                maxdesknum = #{maxdesknum,jdbcType=INTEGER},
-            </if>
-            <if test="status != null">
-                status = #{status,jdbcType=VARCHAR},
-            </if>
-            <if test="workingtimeid != null">
-                workingtimeid = #{workingtimeid,jdbcType=INTEGER},
-            </if>
-            <if test="telephonenum != null">
-                telephonenum = #{telephonenum,jdbcType=VARCHAR},
-            </if>
-            <if test="phonenum != null">
-                phonenum = #{phonenum,jdbcType=VARCHAR},
-            </if>
-            <if test="contact != null">
-                contact = #{contact,jdbcType=VARCHAR},
-            </if>
-            <if test="starnum != null">
-                starnum = #{starnum,jdbcType=INTEGER},
-            </if>
-            <if test="assessid != null">
-                assessid = #{assessid,jdbcType=INTEGER},
-            </if>
-            <if test="placeinfo != null">
-                placeinfo = #{placeinfo,jdbcType=VARCHAR},
-            </if>
-            <if test="tipsinfo != null">
-                tipsinfo = #{tipsinfo,jdbcType=VARCHAR},
-            </if>
-            <if test="otherid != null">
-                otherid = #{otherid,jdbcType=INTEGER},
-            </if>
-            <if test="ownerid != null">
-                ownerid = #{ownerid,jdbcType=INTEGER},
-            </if>
-            <if test="city != null">
-                city = #{city,jdbcType=VARCHAR},
-            </if>
-            <if test="citycode != null">
-                citycode = #{citycode,jdbcType=VARCHAR},
-            </if>
-            <if test="country != null">
-                country = #{country,jdbcType=VARCHAR},
-            </if>
-            <if test="district != null">
-                district = #{district,jdbcType=VARCHAR},
-            </if>
-            <if test="formataddress != null">
-                formataddress = #{formataddress,jdbcType=VARCHAR},
-            </if>
-            <if test="neighborhood != null">
-                neighborhood = #{neighborhood,jdbcType=VARCHAR},
-            </if>
-            <if test="province != null">
-                province = #{province,jdbcType=VARCHAR},
-            </if>
-            <if test="towncode != null">
-                towncode = #{towncode,jdbcType=VARCHAR},
-            </if>
-            <if test="township != null">
-                township = #{township,jdbcType=VARCHAR},
-            </if>
-            <if test="hardware != null">
-                hardware = #{hardware,jdbcType=INTEGER},
-            </if>
-            <if test="storeinfo != null">
-                storeinfo = #{storeinfo,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.dao.Store">
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.Store" >
+    insert into store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="ownerId != null" >
+        ownerId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="createrId != null" >
+        createrId,
+      </if>
+      <if test="storeclass != null" >
+        storeclass,
+      </if>
+      <if test="phonenum != null" >
+        phonenum,
+      </if>
+      <if test="telephonenum != null" >
+        telephonenum,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="placeinfo != null" >
+        placeinfo,
+      </if>
+      <if test="tipsinfo != null" >
+        tipsinfo,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle,
+      </if>
+      <if test="upTime != null" >
+        upTime,
+      </if>
+      <if test="addressId != null" >
+        addressId,
+      </if>
+      <if test="storeTeamId != null" >
+        storeTeamId,
+      </if>
+      <if test="statusId != null" >
+        statusId,
+      </if>
+      <if test="shoppingId != null" >
+        shoppingId,
+      </if>
+      <if test="evaluationId != null" >
+        evaluationId,
+      </if>
+      <if test="packageId != null" >
+        packageId,
+      </if>
+      <if test="picturesPathId != null" >
+        picturesPathId,
+      </if>
+      <if test="hardwareId != null" >
+        hardwareId,
+      </if>
+      <if test="equipmentId != null" >
+        equipmentId,
+      </if>
+      <if test="integralId != null" >
+        integralId,
+      </if>
+      <if test="historyId != null" >
+        historyId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeclass != null" >
+        #{storeclass,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenum != null" >
+        #{phonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="telephonenum != null" >
+        #{telephonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="placeinfo != null" >
+        #{placeinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="tipsinfo != null" >
+        #{tipsinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStyle != null" >
+        #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTeamId != null" >
+        #{storeTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null" >
+        #{statusId,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingId != null" >
+        #{shoppingId,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationId != null" >
+        #{evaluationId,jdbcType=VARCHAR},
+      </if>
+      <if test="packageId != null" >
+        #{packageId,jdbcType=VARCHAR},
+      </if>
+      <if test="picturesPathId != null" >
+        #{picturesPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="hardwareId != null" >
+        #{hardwareId,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null" >
+        #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="integralId != null" >
+        #{integralId,jdbcType=VARCHAR},
+      </if>
+      <if test="historyId != null" >
+        #{historyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.dao.Store" >
     update store
-    set name = #{name,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
+    <set >
+      <if test="ownerId != null" >
+        ownerId = #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        createrId = #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeclass != null" >
+        storeclass = #{storeclass,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenum != null" >
+        phonenum = #{phonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="telephonenum != null" >
+        telephonenum = #{telephonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="placeinfo != null" >
+        placeinfo = #{placeinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="tipsinfo != null" >
+        tipsinfo = #{tipsinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStyle != null" >
+        deleteStyle = #{deleteStyle,jdbcType=BIT},
+      </if>
+      <if test="upTime != null" >
+        upTime = #{upTime,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        addressId = #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeTeamId != null" >
+        storeTeamId = #{storeTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="statusId != null" >
+        statusId = #{statusId,jdbcType=VARCHAR},
+      </if>
+      <if test="shoppingId != null" >
+        shoppingId = #{shoppingId,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationId != null" >
+        evaluationId = #{evaluationId,jdbcType=VARCHAR},
+      </if>
+      <if test="packageId != null" >
+        packageId = #{packageId,jdbcType=VARCHAR},
+      </if>
+      <if test="picturesPathId != null" >
+        picturesPathId = #{picturesPathId,jdbcType=VARCHAR},
+      </if>
+      <if test="hardwareId != null" >
+        hardwareId = #{hardwareId,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentId != null" >
+        equipmentId = #{equipmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="integralId != null" >
+        integralId = #{integralId,jdbcType=VARCHAR},
+      </if>
+      <if test="historyId != null" >
+        historyId = #{historyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.dao.Store" >
+    update store
+    set ownerId = #{ownerId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      createrId = #{createrId,jdbcType=VARCHAR},
       storeclass = #{storeclass,jdbcType=VARCHAR},
-      latitude = #{latitude,jdbcType=DOUBLE},
-      longitude = #{longitude,jdbcType=DOUBLE},
-      picturesurl = #{picturesurl,jdbcType=VARCHAR},
-      maxpeoplenum = #{maxpeoplenum,jdbcType=INTEGER},
-      maxdesknum = #{maxdesknum,jdbcType=INTEGER},
-      status = #{status,jdbcType=VARCHAR},
-      workingtimeid = #{workingtimeid,jdbcType=INTEGER},
-      telephonenum = #{telephonenum,jdbcType=VARCHAR},
       phonenum = #{phonenum,jdbcType=VARCHAR},
+      telephonenum = #{telephonenum,jdbcType=VARCHAR},
       contact = #{contact,jdbcType=VARCHAR},
-      starnum = #{starnum,jdbcType=INTEGER},
-      assessid = #{assessid,jdbcType=INTEGER},
       placeinfo = #{placeinfo,jdbcType=VARCHAR},
       tipsinfo = #{tipsinfo,jdbcType=VARCHAR},
-      otherid = #{otherid,jdbcType=INTEGER},
-      ownerid = #{ownerid,jdbcType=INTEGER},
-      city = #{city,jdbcType=VARCHAR},
-      citycode = #{citycode,jdbcType=VARCHAR},
-      country = #{country,jdbcType=VARCHAR},
-      district = #{district,jdbcType=VARCHAR},
-      formataddress = #{formataddress,jdbcType=VARCHAR},
-      neighborhood = #{neighborhood,jdbcType=VARCHAR},
-      province = #{province,jdbcType=VARCHAR},
-      towncode = #{towncode,jdbcType=VARCHAR},
-      township = #{township,jdbcType=VARCHAR},
-      hardware = #{hardware,jdbcType=INTEGER},
-      storeinfo = #{storeinfo,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+      createTime = #{createTime,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      deleteStyle = #{deleteStyle,jdbcType=BIT},
+      upTime = #{upTime,jdbcType=VARCHAR},
+      addressId = #{addressId,jdbcType=VARCHAR},
+      storeTeamId = #{storeTeamId,jdbcType=VARCHAR},
+      statusId = #{statusId,jdbcType=VARCHAR},
+      shoppingId = #{shoppingId,jdbcType=VARCHAR},
+      evaluationId = #{evaluationId,jdbcType=VARCHAR},
+      packageId = #{packageId,jdbcType=VARCHAR},
+      picturesPathId = #{picturesPathId,jdbcType=VARCHAR},
+      hardwareId = #{hardwareId,jdbcType=VARCHAR},
+      equipmentId = #{equipmentId,jdbcType=VARCHAR},
+      integralId = #{integralId,jdbcType=VARCHAR},
+      historyId = #{historyId,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

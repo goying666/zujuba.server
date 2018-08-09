@@ -1,6 +1,5 @@
 package com.renchaigao.zujuba.controller;
 
-import com.renchaigao.zujuba.domain.TeamInfo;
 import com.renchaigao.zujuba.domain.response.ResponseEntity;
 import com.renchaigao.zujuba.service.impl.TeamServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

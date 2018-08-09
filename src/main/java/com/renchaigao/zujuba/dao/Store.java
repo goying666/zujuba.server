@@ -1,74 +1,70 @@
 package com.renchaigao.zujuba.dao;
 
 public class Store {
-    private Integer id;
+    private String id;
+
+    private String ownerId;
 
     private String name;
 
-    private String address;
+    private String createrId;
 
     private String storeclass;
 
-    private Double latitude;
-
-    private Double longitude;
-
-    private String picturesurl;
-
-    private Integer maxpeoplenum;
-
-    private Integer maxdesknum;
-
-    private String status;
-
-    private Integer workingtimeid;
+    private String phonenum;
 
     private String telephonenum;
 
-    private String phonenum;
-
     private String contact;
-
-    private Integer starnum;
-
-    private Integer assessid;
 
     private String placeinfo;
 
     private String tipsinfo;
 
-    private Integer otherid;
+    private String createTime;
 
-    private Integer ownerid;
+    private String state;
 
-    private String city;
+    private Boolean deleteStyle;
 
-    private String citycode;
+    private String upTime;
 
-    private String country;
+    private String addressId;
 
-    private String district;
+    private String storeTeamId;
 
-    private String formataddress;
+    private String statusId;
 
-    private String neighborhood;
+    private String shoppingId;
 
-    private String province;
+    private String evaluationId;
 
-    private String towncode;
+    private String packageId;
 
-    private String township;
+    private String picturesPathId;
 
-    private Integer hardware;
+    private String hardwareId;
 
-    private String storeinfo;
+    private String equipmentId;
 
-    public Integer getId() {
+    private String integralId;
+
+    private String historyId;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId == null ? null : ownerId.trim();
     }
 
     public String getName() {
@@ -79,12 +75,12 @@ public class Store {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getAddress() {
-        return address;
+    public String getCreaterId() {
+        return createrId;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setCreaterId(String createrId) {
+        this.createrId = createrId == null ? null : createrId.trim();
     }
 
     public String getStoreclass() {
@@ -95,60 +91,12 @@ public class Store {
         this.storeclass = storeclass == null ? null : storeclass.trim();
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public String getPhonenum() {
+        return phonenum;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getPicturesurl() {
-        return picturesurl;
-    }
-
-    public void setPicturesurl(String picturesurl) {
-        this.picturesurl = picturesurl == null ? null : picturesurl.trim();
-    }
-
-    public Integer getMaxpeoplenum() {
-        return maxpeoplenum;
-    }
-
-    public void setMaxpeoplenum(Integer maxpeoplenum) {
-        this.maxpeoplenum = maxpeoplenum;
-    }
-
-    public Integer getMaxdesknum() {
-        return maxdesknum;
-    }
-
-    public void setMaxdesknum(Integer maxdesknum) {
-        this.maxdesknum = maxdesknum;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
-    }
-
-    public Integer getWorkingtimeid() {
-        return workingtimeid;
-    }
-
-    public void setWorkingtimeid(Integer workingtimeid) {
-        this.workingtimeid = workingtimeid;
+    public void setPhonenum(String phonenum) {
+        this.phonenum = phonenum == null ? null : phonenum.trim();
     }
 
     public String getTelephonenum() {
@@ -159,36 +107,12 @@ public class Store {
         this.telephonenum = telephonenum == null ? null : telephonenum.trim();
     }
 
-    public String getPhonenum() {
-        return phonenum;
-    }
-
-    public void setPhonenum(String phonenum) {
-        this.phonenum = phonenum == null ? null : phonenum.trim();
-    }
-
     public String getContact() {
         return contact;
     }
 
     public void setContact(String contact) {
         this.contact = contact == null ? null : contact.trim();
-    }
-
-    public Integer getStarnum() {
-        return starnum;
-    }
-
-    public void setStarnum(Integer starnum) {
-        this.starnum = starnum;
-    }
-
-    public Integer getAssessid() {
-        return assessid;
-    }
-
-    public void setAssessid(Integer assessid) {
-        this.assessid = assessid;
     }
 
     public String getPlaceinfo() {
@@ -207,107 +131,123 @@ public class Store {
         this.tipsinfo = tipsinfo == null ? null : tipsinfo.trim();
     }
 
-    public Integer getOtherid() {
-        return otherid;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setOtherid(Integer otherid) {
-        this.otherid = otherid;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
     }
 
-    public Integer getOwnerid() {
-        return ownerid;
+    public String getState() {
+        return state;
     }
 
-    public void setOwnerid(Integer ownerid) {
-        this.ownerid = ownerid;
+    public void setState(String state) {
+        this.state = state == null ? null : state.trim();
     }
 
-    public String getCity() {
-        return city;
+    public Boolean getDeleteStyle() {
+        return deleteStyle;
     }
 
-    public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
+    public void setDeleteStyle(Boolean deleteStyle) {
+        this.deleteStyle = deleteStyle;
     }
 
-    public String getCitycode() {
-        return citycode;
+    public String getUpTime() {
+        return upTime;
     }
 
-    public void setCitycode(String citycode) {
-        this.citycode = citycode == null ? null : citycode.trim();
+    public void setUpTime(String upTime) {
+        this.upTime = upTime == null ? null : upTime.trim();
     }
 
-    public String getCountry() {
-        return country;
+    public String getAddressId() {
+        return addressId;
     }
 
-    public void setCountry(String country) {
-        this.country = country == null ? null : country.trim();
+    public void setAddressId(String addressId) {
+        this.addressId = addressId == null ? null : addressId.trim();
     }
 
-    public String getDistrict() {
-        return district;
+    public String getStoreTeamId() {
+        return storeTeamId;
     }
 
-    public void setDistrict(String district) {
-        this.district = district == null ? null : district.trim();
+    public void setStoreTeamId(String storeTeamId) {
+        this.storeTeamId = storeTeamId == null ? null : storeTeamId.trim();
     }
 
-    public String getFormataddress() {
-        return formataddress;
+    public String getStatusId() {
+        return statusId;
     }
 
-    public void setFormataddress(String formataddress) {
-        this.formataddress = formataddress == null ? null : formataddress.trim();
+    public void setStatusId(String statusId) {
+        this.statusId = statusId == null ? null : statusId.trim();
     }
 
-    public String getNeighborhood() {
-        return neighborhood;
+    public String getShoppingId() {
+        return shoppingId;
     }
 
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood == null ? null : neighborhood.trim();
+    public void setShoppingId(String shoppingId) {
+        this.shoppingId = shoppingId == null ? null : shoppingId.trim();
     }
 
-    public String getProvince() {
-        return province;
+    public String getEvaluationId() {
+        return evaluationId;
     }
 
-    public void setProvince(String province) {
-        this.province = province == null ? null : province.trim();
+    public void setEvaluationId(String evaluationId) {
+        this.evaluationId = evaluationId == null ? null : evaluationId.trim();
     }
 
-    public String getTowncode() {
-        return towncode;
+    public String getPackageId() {
+        return packageId;
     }
 
-    public void setTowncode(String towncode) {
-        this.towncode = towncode == null ? null : towncode.trim();
+    public void setPackageId(String packageId) {
+        this.packageId = packageId == null ? null : packageId.trim();
     }
 
-    public String getTownship() {
-        return township;
+    public String getPicturesPathId() {
+        return picturesPathId;
     }
 
-    public void setTownship(String township) {
-        this.township = township == null ? null : township.trim();
+    public void setPicturesPathId(String picturesPathId) {
+        this.picturesPathId = picturesPathId == null ? null : picturesPathId.trim();
     }
 
-    public Integer getHardware() {
-        return hardware;
+    public String getHardwareId() {
+        return hardwareId;
     }
 
-    public void setHardware(Integer hardware) {
-        this.hardware = hardware;
+    public void setHardwareId(String hardwareId) {
+        this.hardwareId = hardwareId == null ? null : hardwareId.trim();
     }
 
-    public String getStoreinfo() {
-        return storeinfo;
+    public String getEquipmentId() {
+        return equipmentId;
     }
 
-    public void setStoreinfo(String storeinfo) {
-        this.storeinfo = storeinfo == null ? null : storeinfo.trim();
+    public void setEquipmentId(String equipmentId) {
+        this.equipmentId = equipmentId == null ? null : equipmentId.trim();
+    }
+
+    public String getIntegralId() {
+        return integralId;
+    }
+
+    public void setIntegralId(String integralId) {
+        this.integralId = integralId == null ? null : integralId.trim();
+    }
+
+    public String getHistoryId() {
+        return historyId;
+    }
+
+    public void setHistoryId(String historyId) {
+        this.historyId = historyId == null ? null : historyId.trim();
     }
 }
