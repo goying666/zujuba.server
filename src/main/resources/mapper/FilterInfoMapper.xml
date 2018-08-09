@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.renchaigao.zujuba.dao.mapper.FilterInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.renchaigao.zujuba.domain.FilterInfo" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="teamId" property="teamId" jdbcType="INTEGER" />
+    <result column="IntegrityScore" property="integrityScore" jdbcType="VARCHAR" />
+    <result column="sexRatio" property="sexRatio" jdbcType="VARCHAR" />
+    <result column="careerScreening" property="careerScreening" jdbcType="VARCHAR" />
+    <result column="ageScreening" property="ageScreening" jdbcType="VARCHAR" />
+    <result column="evaluationScreening" property="evaluationScreening" jdbcType="VARCHAR" />
+    <result column="marriage" property="marriage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, teamId, IntegrityScore, sexRatio, careerScreening, ageScreening, evaluationScreening, 
+    marriage
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from filterInfo
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from filterInfo
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.renchaigao.zujuba.domain.FilterInfo" >
+    insert into filterInfo (Id, teamId, IntegrityScore, 
+      sexRatio, careerScreening, ageScreening, 
+      evaluationScreening, marriage)
+    values (#{id,jdbcType=INTEGER}, #{teamId,jdbcType=INTEGER}, #{integrityScore,jdbcType=VARCHAR}, 
+      #{sexRatio,jdbcType=VARCHAR}, #{careerScreening,jdbcType=VARCHAR}, #{ageScreening,jdbcType=VARCHAR}, 
+      #{evaluationScreening,jdbcType=VARCHAR}, #{marriage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.domain.FilterInfo" >
+    insert into filterInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="teamId != null" >
+        teamId,
+      </if>
+      <if test="integrityScore != null" >
+        IntegrityScore,
+      </if>
+      <if test="sexRatio != null" >
+        sexRatio,
+      </if>
+      <if test="careerScreening != null" >
+        careerScreening,
+      </if>
+      <if test="ageScreening != null" >
+        ageScreening,
+      </if>
+      <if test="evaluationScreening != null" >
+        evaluationScreening,
+      </if>
+      <if test="marriage != null" >
+        marriage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null" >
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="integrityScore != null" >
+        #{integrityScore,jdbcType=VARCHAR},
+      </if>
+      <if test="sexRatio != null" >
+        #{sexRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="careerScreening != null" >
+        #{careerScreening,jdbcType=VARCHAR},
+      </if>
+      <if test="ageScreening != null" >
+        #{ageScreening,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationScreening != null" >
+        #{evaluationScreening,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.renchaigao.zujuba.domain.FilterInfo" >
+    update filterInfo
+    <set >
+      <if test="teamId != null" >
+        teamId = #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="integrityScore != null" >
+        IntegrityScore = #{integrityScore,jdbcType=VARCHAR},
+      </if>
+      <if test="sexRatio != null" >
+        sexRatio = #{sexRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="careerScreening != null" >
+        careerScreening = #{careerScreening,jdbcType=VARCHAR},
+      </if>
+      <if test="ageScreening != null" >
+        ageScreening = #{ageScreening,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationScreening != null" >
+        evaluationScreening = #{evaluationScreening,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.renchaigao.zujuba.domain.FilterInfo" >
+    update filterInfo
+    set teamId = #{teamId,jdbcType=INTEGER},
+      IntegrityScore = #{integrityScore,jdbcType=VARCHAR},
+      sexRatio = #{sexRatio,jdbcType=VARCHAR},
+      careerScreening = #{careerScreening,jdbcType=VARCHAR},
+      ageScreening = #{ageScreening,jdbcType=VARCHAR},
+      evaluationScreening = #{evaluationScreening,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
