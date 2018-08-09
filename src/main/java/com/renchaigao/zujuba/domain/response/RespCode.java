@@ -15,16 +15,18 @@ public enum  RespCode {
     WARN(-1, "Network exception, please try again later"),
     /* normal part*/
 
-    /* user login part*/
+    /* user part*/
+    USERINFOADD(1002,"Add new userInfo"),
     USERHAD(1001,"User already exists"),
+
     WRONGPWD(-1001,"Wrong password"),
     USERNOTEL(-1002,"Telephone missing"),
     TOKENOLD(-1003,"Token is Expired"),
     TOKENWRONG(-1004,"Token is wrong"),
     TOKENEXCEPTION(-1005,"Make Token is wrong"),
     USERADDFAIL(-1006,"Add user fail"),
+    USERINFONONE(-1007,"No userInfo."),
     /* user login part*/
-
     STOREWRONG(-1100,"Storeinfo is wrong"),
     STOREFILEWRONG(-1101,"StoreFile is wrong"),
 

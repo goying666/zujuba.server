@@ -43,12 +43,10 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/info/get/{userid}" , consumes = "application/json")
+    @PostMapping(value = "/info/get" , consumes = "application/json")
     @ResponseBody
     public ResponseEntity userGetInfo(
-            @RequestBody User user,
-            @PathVariable("mode") String inputMode){
-            return new ResponseEntity(RespCode.WRONGIP,null);
-
+            @RequestBody User user){
+            return userServiceImpl.getUserInfo(user);
     }
 }

@@ -3,9 +3,16 @@ package com.renchaigao.zujuba.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.renchaigao.zujuba.dao.User;
 import com.renchaigao.zujuba.dao.UserLogin;
+import com.renchaigao.zujuba.dao.UserRank;
+import com.renchaigao.zujuba.dao.mapper.FriendMapper;
 import com.renchaigao.zujuba.dao.mapper.UserLoginMapper;
 import com.renchaigao.zujuba.dao.mapper.UserMapper;
+import com.renchaigao.zujuba.dao.mapper.UserRankMapper;
+import com.renchaigao.zujuba.domain.info.*;
 import com.renchaigao.zujuba.domain.info.user.UserInfo;
+import com.renchaigao.zujuba.domain.info.user.myPlayGamesInfo;
+import com.renchaigao.zujuba.domain.info.user.myStoresInfo;
+import com.renchaigao.zujuba.domain.info.user.myTeamsInfo;
 import com.renchaigao.zujuba.domain.response.RespCode;
 import com.renchaigao.zujuba.domain.response.ResponseEntity;
 import com.renchaigao.zujuba.function.TokenMaker;
@@ -14,6 +21,10 @@ import com.renchaigao.zujuba.function.dateUse;
 import com.renchaigao.zujuba.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +46,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserLoginMapper userLoginMapper;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
+
+    @Autowired
+    UserRankMapper userRankMapper;
+
+    @Autowired
+    FriendMapper friendMapper;
 
     @Override
 //    自动登陆
@@ -171,6 +191,100 @@ public class UserServiceImpl implements UserService {
             }
         } catch (Exception e) {
             return new ResponseEntity(RespCode.EXCEPTION, e);
+        }
+    }
+
+    @Override
+    public ResponseEntity getUserInfo(User userApp) {
+        UserInfo userInfo = mongoTemplate.findById(userApp.getUserInfoId(), UserInfo.class);
+        if (userInfo == null)//没有userInfo，创建一个在MongoDB里。
+        {
+//            先将user内的信息付给userInfo
+            userInfo = (UserInfo) userApp;
+            /*  创建各个object */
+            //          创建myTeamsInfo
+            myTeamsInfo myTeamsInfo = new myTeamsInfo();
+            myTeamsInfo.setId(userApp.getMyTeamsId());
+            mongoTemplate.insert(myTeamsInfo);
+            userInfo.setMyTeamsInfo(myTeamsInfo);
+//          创建myGamesInfo
+            myPlayGamesInfo myPlayGamesInfo = new myPlayGamesInfo();
+            myPlayGamesInfo.setId(userApp.getMyGamesId());
+            mongoTemplate.insert(myPlayGamesInfo);
+            userInfo.setMyPlayGamesInfo(myPlayGamesInfo);
+//          创建myStoresInfo
+            myStoresInfo myStoresInfo = new myStoresInfo();
+            myStoresInfo.setId(userApp.getMyStoresId());
+            mongoTemplate.insert(myStoresInfo);
+            userInfo.setMyStoresInfo(myStoresInfo);
+//          创建myPhotoInfo
+            photo photo = new photo();
+            photo.setId(userApp.getPhotoInfoId());
+            mongoTemplate.insert(photo);
+            userInfo.setMyPhotoInfo(photo);
+//          创建myAddress
+            addressInfo addressInfo = new addressInfo();
+            addressInfo.setId(userApp.getMyAddressId());
+            mongoTemplate.insert(addressInfo);
+            userInfo.setMyAddressInfo(addressInfo);
+//          创建mySpendInfo
+            userSpendInfo userSpendInfo = new userSpendInfo();
+            userSpendInfo.setId(userApp.getMySpendInfoId());
+            mongoTemplate.insert(userSpendInfo);
+            userInfo.setMySpendInfo(userSpendInfo);
+//          创建myRankInfo
+            UserRank userRank = new UserRank();
+            userRank.setId(userApp.getMyRankInfoId());
+            userRank.setDeleteStyle(false);
+            userRank.setUpTime(dateUse.DateToString(new Date()));
+            userRank.setIntegral(0);
+            userRank.setCityIntegralRank(0);
+            userRank.setCountryIntegralRank(0);
+            userRank.setProvinceIntegralRank(0);
+            userRank.setUserId(userApp.getId());
+            userRankMapper.insert(userRank);
+            userInfo.setMyRankInfo(userRank);
+//          创建myMessageInfo
+
+//          创建myFriendInfo
+            userFriendInfo userFriendInfo = new userFriendInfo();
+            userFriendInfo.setId(userApp.getMyFriendInfoId());
+            mongoTemplate.insert(userFriendInfo);
+            userInfo.setMyFreiendInfo(userFriendInfo);
+
+//          创建myIntegrationInfo
+
+//          创建peopleList
+
+//          创建myPermissionInfo
+            userPermissionInfo userPermissionInfo= new userPermissionInfo();
+            userPermissionInfo.setId(userApp.getMyPermissionInfoId());
+            mongoTemplate.insert(userPermissionInfo);
+            userInfo.setMyPermissionInfo(userPermissionInfo);
+
+            mongoTemplate.insert(userInfo);
+            return new ResponseEntity(RespCode.USERINFOADD, userInfo);
+        }else {
+//          userInfo已存在，更新后发送给前端
+            userInfo.setMyTeamsInfo(mongoTemplate.findById(userApp.getMyTeamsId(),myTeamsInfo.class);
+            userInfo.setMyPlayGamesInfo(mongoTemplate.findById(userApp.getMyGamesId(),myPlayGamesInfo.class);
+            userInfo.setMyStoresInfo(mongoTemplate.findById(userApp.getMyStoresId(),myStoresInfo.class);
+            userInfo.setMyPhotoInfo(mongoTemplate.findById(userApp.getPhotoInfoId(),photo.class);
+            userInfo.setMyAddressInfo(mongoTemplate.findById(userApp.getMyAddressId(),addressInfo.class);
+            userInfo.setMySpendInfo(mongoTemplate.findById(userApp.getMySpendInfoId(),userSpendInfo.class);
+            userInfo.setMyRankInfo(mongoTemplate.findById(userApp.getMyRankInfoId(),UserRank.class);
+//          创建myMessageInfo
+            userInfo.setMyFreiendInfo(mongoTemplate.findById(userApp.getMyFriendInfoId(),userFriendInfo.class);
+//          创建myIntegrationInfo
+//          创建peopleList
+            userInfo.setMyPermissionInfo(mongoTemplate.findById(userApp.getMyPermissionInfoId(),userPermissionInfo.class));
+
+            Criteria criteria = Criteria.where("id").ne(userApp.getId());
+            Update update = Update.update("teacher", "Mr.wang");
+            mongoTemplate.upsert(Query.query(criteria), update, "class");
+//        List<TeamInfo> teamInfoList = mongoTemplate.find(Query.query(criteria), TeamInfo.class);
+            mongoTemplate.update(,userInfo,UserInfo.class);
+            return new ResponseEntity(RespCode.USERINFONONE, userInfo);
         }
     }
 

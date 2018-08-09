@@ -9,5 +9,6 @@ public interface UserService {
     ResponseEntity secretLoginUser(User user);
     ResponseEntity vercodeLoginUser(User user,String verCode);
     ResponseEntity addUser(User user,String verCode);
+    ResponseEntity getUserInfo(User userApp);
 //    ResponseEntity addUserLogin(UserLoin userLoin);
 }

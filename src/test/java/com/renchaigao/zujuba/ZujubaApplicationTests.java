@@ -24,4 +24,6 @@ public class ZujubaApplicationTests {
 		String string = redisTemplate.opsForValue().get("teamInfo");
 	}
 
+
+
 }

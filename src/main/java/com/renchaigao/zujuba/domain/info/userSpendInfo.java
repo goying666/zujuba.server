@@ -5,4 +5,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class userSpendInfo {
+    private String id;
 }

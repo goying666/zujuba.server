@@ -1,5 +1,6 @@
 package com.renchaigao.zujuba.domain.info.user;
 
+import com.renchaigao.zujuba.dao.User;
 import com.renchaigao.zujuba.dao.UserRank;
 import com.renchaigao.zujuba.domain.info.*;
 import lombok.Getter;
@@ -7,7 +8,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class UserInfo extends User{
+public class UserInfo extends User {
     private String userId;
     private myTeamsInfo myTeamsInfo;
     private myPlayGamesInfo myPlayGamesInfo;

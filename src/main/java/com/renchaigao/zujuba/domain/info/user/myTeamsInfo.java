@@ -6,4 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class myTeamsInfo {
+    private String id;
 }
