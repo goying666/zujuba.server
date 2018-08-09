@@ -1,5 +1,6 @@
 package com.renchaigao.zujuba.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.renchaigao.zujuba.dao.User;
 import com.renchaigao.zujuba.dao.mapper.UserMapper;
@@ -71,7 +72,7 @@ public class TeamServiceImpl implements TeamService {
 //        if()
 //        2、数据库新增team信息；
         teamInfo.setAddressId(addressInfo.getId());
-        teamInfo.setScoreFilterID(filterInfo.getId());
+        teamInfo.setFilterId(filterInfo.getId());
         teamInfo.setPlayerinfoId(playerInfo.getId());
         teamInfo.setOwnerId(userId);
         teamInfo.setTeamstate("waiting");
@@ -88,10 +89,21 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public ResponseEntity getTeamsByUserId(Integer userId, String getWay) {
-        Criteria criteria = Criteria.where("id").ne(userId);
-        List<TeamInfo> teamInfoList = mongoTemplate.find(Query.query(criteria), TeamInfo.class);
-        return null;
-//        return new ResponseEntity(RespCode.SUCCESS, JSONObject.toJSONString(teamInfo));
+        List<Team> teams = teamMapper.selectAllTeam();
+        ArrayList<TeamInfo> teamInfos = new ArrayList<>();
+        TeamInfo teamInfo = new TeamInfo() ;
+        for(Team i : teams){
+            teamInfo = JSONObject.parseObject(JSONObject.toJSONString(i),TeamInfo.class);
+            teamInfo.setFilterInfo(mongoTemplate.findById(i.getFilterId(),FilterInfo.class));
+            teamInfo.setAddressInfo(mongoTemplate.findById(i.getAddressId(),AddressInfo.class));
+            teamInfo.setPlayerInfo(mongoTemplate.findById(i.getPlayerinfoId(),PlayerInfo.class));
+            teamInfos.add(teamInfo);
+        }
+        String teamListStr = JSONArray.toJSONString(teamInfos);
+//        Criteria criteria = Criteria.where("id").ne(userId);
+//        List<TeamInfo> teamInfoList = mongoTemplate.find(Query.query(criteria), TeamInfo.class);
+//        return null;
+        return new ResponseEntity(RespCode.SUCCESS, teamListStr);
     }
 
     @Override

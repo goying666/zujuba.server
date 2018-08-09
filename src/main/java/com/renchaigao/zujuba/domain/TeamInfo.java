@@ -8,8 +8,9 @@ import lombok.Setter;
 @Getter
 public class TeamInfo extends Team {
 
-    private String scoreFilter;
-    private String scoreFilterID;
+//    private String scoreFilter;
+//    private String scoreFilterID;
+
     private AddressInfo addressInfo;
     private FilterInfo filterInfo;
     private PlayerInfo playerInfo;
