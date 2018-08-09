@@ -22,7 +22,7 @@ public class UserController {
 //    }
     @PostMapping(value = "/login/{mode}/{code}" , consumes = "application/json")
     @ResponseBody
-    public ResponseEntity userAddInfo(
+    public ResponseEntity userLoginInfo(
                                         @RequestBody User user,
                                         @PathVariable("mode") String inputMode,
                                         @PathVariable("code") String verCode){
@@ -43,5 +43,12 @@ public class UserController {
         }
     }
 
+    @PostMapping(value = "/info/get/{userid}" , consumes = "application/json")
+    @ResponseBody
+    public ResponseEntity userGetInfo(
+            @RequestBody User user,
+            @PathVariable("mode") String inputMode){
+            return new ResponseEntity(RespCode.WRONGIP,null);
 
+    }
 }

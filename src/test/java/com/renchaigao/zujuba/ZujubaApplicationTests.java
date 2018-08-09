@@ -17,5 +17,11 @@ public class ZujubaApplicationTests {
 		redisTemplate.opsForValue().set("teamInfo","teamInfo this here.");
 		String string = redisTemplate.opsForValue().get("teamInfo");
 	}
+	@Test
+	public void redisTest() {
+		redisTemplate.opsForValue().set("teamInfo1","22222");
+		redisTemplate.opsForValue().set("teamInfo1","11111.");
+		String string = redisTemplate.opsForValue().get("teamInfo");
+	}
 
 }

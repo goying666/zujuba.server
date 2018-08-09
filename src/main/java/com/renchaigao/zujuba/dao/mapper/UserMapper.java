@@ -11,6 +11,8 @@ public interface UserMapper {
 
     User selectByPrimaryKey(String id);
 
+    User selectByTelephone(String telephone);
+
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);

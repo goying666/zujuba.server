@@ -1,6 +1,9 @@
 package com.renchaigao.zujuba.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.renchaigao.zujuba.dao.User;
+import com.renchaigao.zujuba.dao.UserLogin;
+import com.renchaigao.zujuba.dao.mapper.UserLoginMapper;
 import com.renchaigao.zujuba.dao.mapper.UserMapper;
 import com.renchaigao.zujuba.domain.info.user.UserInfo;
 import com.renchaigao.zujuba.domain.response.RespCode;
@@ -11,6 +14,7 @@ import com.renchaigao.zujuba.function.dateUse;
 import com.renchaigao.zujuba.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -22,71 +26,64 @@ public class UserServiceImpl implements UserService {
 
     private static Logger logger = Logger.getLogger(UserServiceImpl.class);
 
+
+    @Autowired
+    StringRedisTemplate redisTemplate;
+
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    UserLoginMapper userLoginMapper;
 
     @Override
 //    自动登陆
-    public ResponseEntity autoLoginUser(User userinfo) {
-        User user = userMapper.selectByTelephone(userinfo.getTelephone());
-        String token = userinfo.getToken();
-
+    public ResponseEntity autoLoginUser(User userApp) {
+        String telephone = userApp.getTelephone();
+        User userSql = userMapper.selectByTelephone(telephone);
 //      验证密码
-        if (userinfo.getUserPWD().equals(user.getUserPWD())) {
+        if (userSql.getUserPWD().equals(userApp.getUserPWD())) {
 //          判断token的正误
-            if (!userinfo.getToken().equals(user.getToken())) {
-                return new ResponseEntity(RespCode.TOKENWRONG, userinfo);
+            if (!userSql.getToken().equals(userApp.getToken())) {
+                return new ResponseEntity(RespCode.TOKENWRONG, userApp);
             }
-//          更新token
-            try {
-                token = TokenMaker.EncoderByMd5(userinfo.getTelephone() + userinfo.getUserPWD());
-
-            } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-                e.printStackTrace();
-                return new ResponseEntity(RespCode.TOKENEXCEPTION, e);
-            }
-//          将userInfo返回给用户（包含所有信息，对照Excel表格内容）
-
-            user.setToken(token);
-            userToken.setToken(token);
-            userToken.setCreatetime(new Date());
-            try {
-//                        更新user表中的token信息：token
-                userMapper.updateByPrimaryKey(user);
-//                        更新token表中的token信息：时间、token
-                userTokenMapper.updateByPrimaryKey(userToken);
-                return new ResponseEntity(RespCode.UPDATEUSERINFOSUCCESS, user);
-            } catch (Exception e) {
-                return new ResponseEntity(RespCode.EXCEPTION, e);
-            }
+            return checkUserInfoFUNC(telephone, userSql);
         } else {
-//                  密码错误
-            return new ResponseEntity(RespCode.WRONGPWD, userinfo);
+            return new ResponseEntity(RespCode.WRONGPWD, userApp);//                  密码错误
         }
-        return new ResponseEntity(RespCode.TOKENOLD);
     }
 
     @Override
 //    密码登陆
-    public ResponseEntity secretLoginUser(User user){
-
-        return null;
+    public ResponseEntity secretLoginUser(User userApp) {
+        String telephone = userApp.getTelephone();
+        User userSql = userMapper.selectByTelephone(telephone);
+        if (userSql.getUserPWD().equals(userApp.getUserPWD())) {
+            return checkUserInfoFUNC(telephone, userSql);
+        } else {
+            return new ResponseEntity(RespCode.WRONGPWD, userApp);
+        }
     }
 
     @Override
 //    验证码登陆
-    public ResponseEntity vercodeLoginUser(User user,String verCode){
-        return null;
+    public ResponseEntity vercodeLoginUser(User userApp, String verCode) {
+        String telephone = userApp.getTelephone();
+        User userSql = userMapper.selectByTelephone(telephone);
+        if (checkVercode(verCode)) {
+            return checkUserInfoFUNC(telephone, userSql);
+        } else {
+            return new ResponseEntity(RespCode.WRONGPWD, userApp);
+        }
     }
 
     @Override
     //系统添加新用户信息
-    public ResponseEntity addUser(User userApp,String verCode) {
+    public ResponseEntity addUser(User userApp, String verCode) {
         String telephone = userApp.getTelephone();
-        String token = null;
         String uniqueId = userApp.getUniqueId();
         User userRet = new User();
+        String token;
         try {
             if (null != userApp.getTelephone()) {
 //          验证码判断部分
@@ -121,14 +118,10 @@ public class UserServiceImpl implements UserService {
                 userRet.setMarriage("0");
                 //配置userPWD属性;
                 userRet.setUserPWD("0");
-                //配置token属性;
-                userRet.setToken(token);
                 //配置picPath属性;
                 userRet.setPicPath("0");
                 //配置deleteStyle属性;
                 userRet.setDeleteStyle(false);
-                //配置upTime属性;
-                userRet.setUpTime(dateUse.DateToString(new Date()));
                 //配置myOpenInfoId属性;
                 userRet.setMyOpenInfoId(UUIDUtil.getUUID());
                 //配置userInfoId属性;
@@ -159,8 +152,16 @@ public class UserServiceImpl implements UserService {
                 userRet.setPeopleListId(UUIDUtil.getUUID());
                 //配置 myPermissionInfoId属性;
                 userRet.setMyPermissionInfoId(UUIDUtil.getUUID());
+                //配置upTime属性;
+                userRet.setUpTime(dateUse.DateToString(new Date()));
+                //配置token属性;
+                userRet.setToken(token);
 
                 if (userMapper.insert(userRet) == 1) {
+
+
+                    redisTemplate.opsForValue().set(userRet.getId(),
+                            JSONObject.toJSONString(userRet));
                     return new ResponseEntity(RespCode.SUCCESS, userRet);
                 } else {
                     return new ResponseEntity(RespCode.USERADDFAIL, userRet);
@@ -168,8 +169,44 @@ public class UserServiceImpl implements UserService {
             } else {
                 return new ResponseEntity(RespCode.USERNOTEL, userApp);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity(RespCode.EXCEPTION, e);
+        }
+    }
+
+    private boolean checkVercode(String verCode) {
+        return true;
+    }
+
+    private ResponseEntity checkUserInfoFUNC(String telephone, User userSql) {
+        String token;
+        UserLogin userLogin = new UserLogin();
+        String nowTime = dateUse.DateToString(new Date());
+        try {
+            token = TokenMaker.EncoderByMd5(telephone);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return new ResponseEntity(RespCode.TOKENEXCEPTION, e);
+        }
+        userSql.setToken(token);//通过判断后，更新token
+        userSql.setUpTime(nowTime);//更新时间
+        userLogin.setDeleteStyle(false);//通过判断后，新增login信息
+        userLogin.setId(UUIDUtil.getUUID());
+        userLogin.setLoginTime(nowTime);
+        userLogin.setUserId(userSql.getId());
+        try {
+            userLoginMapper.insert(userLogin);
+            userMapper.updateByPrimaryKey(userSql);//更新user信息；
+            return new ResponseEntity(RespCode.SUCCESS, userSql);
+        } catch (Exception e) {
+            return new ResponseEntity(RespCode.EXCEPTION, e);
+        } finally {
+//            if (redisTemplate.opsForValue().get(userSql.getId()) == null)
+//                redisTemplate.opsForValue().set(userSql.getId(),
+//                        JSONObject.toJSONString(userSql));
+//            else {
+//                redisTemplate.opsForValue().
+//            }
         }
     }
 
