@@ -91,7 +91,8 @@ public class TeamServiceImpl implements TeamService {
     public ResponseEntity getTeamsByUserId(Integer userId, String getWay) {
         List<Team> teams = teamMapper.selectAllTeam();
         ArrayList<TeamInfo> teamInfos = new ArrayList<>();
-        TeamInfo teamInfo = new TeamInfo() ;
+        TeamInfo teamInfo ;
+        teamInfo = new TeamInfo();
         for(Team i : teams){
             teamInfo = JSONObject.parseObject(JSONObject.toJSONString(i),TeamInfo.class);
             teamInfo.setFilterInfo(mongoTemplate.findById(i.getFilterId(),FilterInfo.class));
