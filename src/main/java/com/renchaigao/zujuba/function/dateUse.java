@@ -51,7 +51,7 @@ public class dateUse {
         calendarToken.setTime(date);
         calendarNow.setTime(new Date());
         if ((calendarNow.getTimeInMillis() - calendarToken.getTimeInMillis()) / (1000 * 60 * 60 * 24) < 2)
-            return true;
+            return true; //没过期
         else
             return false;
     }

@@ -39,23 +39,23 @@
     myTeamsId, myGamesId, myStoresId, photoInfoId, myAddressId, myRankInfoId, mySpendInfoId, 
     myMessageInfoId, myFriendInfoId, myIntegrationInfoId, peopleListId, myPermissionInfoId
   </sql>
-  <select id="selectByTelephone" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from user
-    where telephone = #{telephone,jdbcType=VARCHAR}
-  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from user
     where Id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectByTelephone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where telephone = #{telephone,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user
     where Id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.User" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="insert" parameterType="com.renchaigao.zujuba.dao.User" >
     insert into user (Id, age, ageLevel, 
       realName, nickName, idCard, 
       gender, job, telephone, 
@@ -79,7 +79,7 @@
       #{myIntegrationInfoId,jdbcType=VARCHAR}, #{peopleListId,jdbcType=VARCHAR}, #{myPermissionInfoId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.User" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="insertSelective" parameterType="com.renchaigao.zujuba.dao.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

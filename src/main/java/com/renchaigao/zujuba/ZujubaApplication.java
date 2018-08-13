@@ -11,6 +11,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ZujubaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ZujubaApplication.class, args);
-
 	}
 }

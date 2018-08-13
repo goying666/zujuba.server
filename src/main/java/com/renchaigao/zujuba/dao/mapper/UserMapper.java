@@ -2,6 +2,8 @@ package com.renchaigao.zujuba.dao.mapper;
 
 import com.renchaigao.zujuba.dao.User;
 
+import java.util.List;
+
 public interface UserMapper {
     int deleteByPrimaryKey(String id);
 
@@ -11,7 +13,7 @@ public interface UserMapper {
 
     User selectByPrimaryKey(String id);
 
-    User selectByTelephone(String telephone);
+    List<User> selectByTelephone(String telephone);
 
     int updateByPrimaryKeySelective(User record);
 
